@@ -1,33 +1,32 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
-import NavbarComponent from "~/components/navbar";
-import CodeMirror from "@uiw/react-codemirror";
-import { vscodeDark } from "@uiw/codemirror-theme-vscode";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import {
-  atomOneDark,
-  dark,
-  docco,
-} from "react-syntax-highlighter/dist/esm/styles/hljs";
+import Wheel from "@uiw/react-color-wheel";
 
-import { api } from "~/utils/api";
-import { darkula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useState } from "react";
+import { motion } from "framer-motion";
+
+import NavbarComponent from "~/components/navbar";
+import CodeBlockComponent from "~/components/codeBlock";
+
+import { hsvaToHex } from "@uiw/color-convert";
+import { Button, MovingBorder } from "~/components/ui/moving-border";
+import ExampleButtonComponent from "~/components/index/examplebutton";
+import ColorChangingComponent from "~/components/ui/ColorChangingComponent";
+import Link from "next/link";
 
 export default function Home() {
-  const [something, setSomething] = useState("");
-  const codeString = `<>
-  <div className="flex gap-4">
-    <button className="h-12 ${something} rounded-md border px-2">
-      Browse Components
-    </button>
-    <button className="h-12 w-[180px] rounded-md border bg-white px-2 text-black">
-      Ressources
-    </button>
-  </div>
-</>
+  const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
+  const colorashex = hsvaToHex(hsva);
+
+  const codeString = `<div className="flex gap-4">
+  <button
+    className="h-12"
+    style={{
+      backgroundColor: ${colorashex})
+    }}
+   >
+    Browse Components
+  </button>
+</div>
 `;
 
   return (
@@ -38,11 +37,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="absolute grid h-screen w-screen grid-cols-12 grid-rows-12 px-4">
-        <div className="col-span-6 col-start-7 row-span-8 row-start-3 flex flex-col justify-end rounded-lg bg-violet-950/40 px-4 pb-4">
-          <div className="relative z-[60] max-h-[50%] overflow-scroll rounded-md">
-            <SyntaxHighlighter language="javascript" style={atomOneDark}>
-              {codeString}
-            </SyntaxHighlighter>
+        <div className="col-span-6 col-start-7 row-span-8 row-start-3 flex flex-col justify-end gap-3 rounded-lg bg-violet-950/40 p-4 pb-4">
+          <div className="flex h-[50%] items-center justify-between gap-4">
+            <div className="relative z-[40] flex h-full w-[60%] items-center justify-center rounded-md bg-white/10">
+              <ColorChangingComponent color={hsvaToHex(hsva)} />
+            </div>
+            <Wheel
+              color={hsva}
+              onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
+              className="relative z-[500] flex-shrink-0"
+            />
+          </div>
+
+          <div className="relative z-[60] max-h-[50%] w-full">
+            <CodeBlockComponent code={codeString} />
           </div>
         </div>
       </div>
@@ -53,15 +61,18 @@ export default function Home() {
             <h1 className="font-bold leading-[1em] [font-size:_clamp(3.5em,3.5vw,8em)]">
               Streamline your development process
             </h1>
-            <p className="text-muted-foreground w-[80%]">
+            <p className="w-[80%] text-muted-foreground">
               With copy and paste components that allow for customization right
               in the browser streamlining your development process allowing for
               faster product launch.
             </p>
             <div className="flex gap-4">
-              <button className="h-12 w-[180px] rounded-md border px-2">
-                Browse Components
-              </button>
+              <Link href={"/components"}>
+                <button className="h-12 w-[180px] rounded-md border px-2">
+                  Browse Components
+                </button>
+              </Link>
+
               <button className="h-12 w-[180px] rounded-md border bg-white px-2 text-black">
                 Ressources
               </button>
@@ -78,10 +89,10 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="h-6 w-6 text-neutral-500"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 flex-shrink-0 stroke-1 text-muted-foreground md:h-8 md:w-8"
                 >
                   <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
                   <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
@@ -89,7 +100,7 @@ export default function Home() {
               </a>
             </div>
             <div className="flex w-fit items-center gap-4">
-              <div className="text-muted-foreground flex items-center gap-2 ">
+              <div className="flex items-center gap-2 text-muted-foreground ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -97,17 +108,17 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="text-muted-foreground h-4 w-4 flex-shrink-0 stroke-1 md:h-8 md:w-8"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 flex-shrink-0 stroke-1 text-muted-foreground md:h-8 md:w-8"
                 >
                   <path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
                   <path d="M15 12v-3"></path>
                 </svg>
                 <p>Node.JS</p>
               </div>
-              <div className="text-muted-foreground flex items-center gap-2 ">
+              <div className="flex items-center gap-2 text-muted-foreground ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -115,10 +126,10 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="text-muted-foreground h-4 w-4 flex-shrink-0 stroke-1  md:h-8 md:w-8"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 flex-shrink-0 stroke-1 text-muted-foreground md:h-8 md:w-8"
                 >
                   <path d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"></path>
                   <path d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"></path>
@@ -130,22 +141,7 @@ export default function Home() {
                 </svg>
                 <p>React</p>
               </div>
-              <div className="text-muted-foreground flex items-center gap-2 ">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  className="text-muted-foreground h-4 w-4 flex-shrink-0 stroke-1  md:h-8 md:w-8"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M18.5 9.51a4.22 4.22 0 0 1-1.91-1.34A5.77 5.77 0 0 0 12 6a4.72 4.72 0 0 0-5 4 3.23 3.23 0 0 1 3.5-1.49 4.32 4.32 0 0 1 1.91 1.35A5.77 5.77 0 0 0 17 12a4.72 4.72 0 0 0 5-4 3.2 3.2 0 0 1-3.5 1.51zm-13 4.98a4.22 4.22 0 0 1 1.91 1.34A5.77 5.77 0 0 0 12 18a4.72 4.72 0 0 0 5-4 3.23 3.23 0 0 1-3.5 1.49 4.32 4.32 0 0 1-1.91-1.35A5.8 5.8 0 0 0 7 12a4.72 4.72 0 0 0-5 4 3.2 3.2 0 0 1 3.5-1.51z"></path>
-                </svg>
-                <p>Tailwind CSS</p>
-              </div>
-              <div className="text-muted-foreground flex items-center gap-2 ">
+              <div className="flex items-center gap-2 text-muted-foreground ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -153,10 +149,27 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="text-muted-foreground h-4 w-4 flex-shrink-0 stroke-1  md:h-8 md:w-8"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 flex-shrink-0 stroke-1 text-muted-foreground md:h-8 md:w-8"
+                >
+                  <path d="M18.5 9.51a4.22 4.22 0 0 1-1.91-1.34A5.77 5.77 0 0 0 12 6a4.72 4.72 0 0 0-5 4 3.23 3.23 0 0 1 3.5-1.49 4.32 4.32 0 0 1 1.91 1.35A5.77 5.77 0 0 0 17 12a4.72 4.72 0 0 0 5-4 3.2 3.2 0 0 1-3.5 1.51zm-13 4.98a4.22 4.22 0 0 1 1.91 1.34A5.77 5.77 0 0 0 12 18a4.72 4.72 0 0 0 5-4 3.23 3.23 0 0 1-3.5 1.49 4.32 4.32 0 0 1-1.91-1.35A5.8 5.8 0 0 0 7 12a4.72 4.72 0 0 0-5 4 3.2 3.2 0 0 1 3.5-1.51z"></path>
+                </svg>
+                <p>Tailwind CSS</p>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground ">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4 flex-shrink-0 stroke-1 text-muted-foreground md:h-8 md:w-8"
                 >
                   <path d="M12 12l-8 -8v16l16 -16v16l-4 -4"></path>
                   <path d="M20 12l-8 8l-4 -4"></path>
@@ -168,33 +181,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  );
-}
-
-function AuthShowcase() {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && (
-          <>
-            <span>Logged in as {sessionData.user?.name}</span>
-          </>
-        )}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
   );
 }
