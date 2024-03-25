@@ -14,18 +14,20 @@ import {
 import { api } from "~/utils/api";
 import { darkula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useState } from "react";
 
 export default function Home() {
-  const codeString = `
-  <>
+  const [something, setSomething] = useState("");
+  const codeString = `<>
   <div className="flex gap-4">
-    <button className="h-12 w-[180px] rounded-md border px-2">
+    <button className="h-12 ${something} rounded-md border px-2">
       Browse Components
     </button>
     <button className="h-12 w-[180px] rounded-md border bg-white px-2 text-black">
       Ressources
     </button>
   </div>
+</>
 `;
 
   return (
@@ -37,16 +39,16 @@ export default function Home() {
       </Head>
       <div className="absolute grid h-screen w-screen grid-cols-12 grid-rows-12 px-4">
         <div className="col-span-6 col-start-7 row-span-8 row-start-3 flex flex-col justify-end rounded-lg bg-violet-950/40 px-4 pb-4">
-          <div className="max-h-[50%] overflow-scroll">
+          <div className="relative z-[60] max-h-[50%] overflow-scroll rounded-md">
             <SyntaxHighlighter language="javascript" style={atomOneDark}>
               {codeString}
             </SyntaxHighlighter>
           </div>
         </div>
       </div>
-      <main className=" flex h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c]">
+      <main className="flex h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c]">
         <NavbarComponent />
-        <div className="grid h-full w-full grid-cols-12 grid-rows-12 px-4">
+        <div className="relative z-[50] grid h-full w-full grid-cols-12 grid-rows-12 px-4">
           <div className="col-span-7 row-span-6 row-start-4 flex flex-col justify-around rounded-lg bg-slate-500/10 p-2 px-3 text-white">
             <h1 className="font-bold leading-[1em] [font-size:_clamp(3.5em,3.5vw,8em)]">
               Streamline your development process
