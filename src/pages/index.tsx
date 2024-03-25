@@ -37,8 +37,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="absolute grid h-screen w-screen grid-cols-12 grid-rows-12 px-4">
-        <div className="col-span-6 col-start-7 row-span-8 row-start-3 flex flex-col justify-end gap-3 rounded-lg bg-violet-950/40 p-4 pb-4">
-          <div className="flex h-[50%] items-center justify-between gap-4">
+        <div className="y-4 col-span-6 col-start-7 row-span-8 row-start-3 flex h-full w-full flex-col justify-around rounded-lg bg-violet-950/40 px-4 py-4">
+          <div className="flex h-[40%] items-center justify-between">
             <div className="relative z-[40] flex h-full w-[60%] items-center justify-center rounded-md bg-white/10">
               <ColorChangingComponent color={hsvaToHex(hsva)} />
             </div>

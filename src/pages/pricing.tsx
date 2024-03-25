@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import NavbarComponent from "~/components/navbar";
+import NavbarComponent from "~/components/Navbar";
 
 export default function Home() {
   return (

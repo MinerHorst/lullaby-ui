@@ -29,7 +29,7 @@ export default function CodeBlockComponent({ code }: { code: string }) {
 
   return (
     <div style={{ position: "relative" }}>
-      <pre className="h-full" ref={codeRef}>
+      <pre ref={codeRef}>
         <code className="language-jsx">{code}</code>
       </pre>
       {copied ? (
@@ -43,7 +43,7 @@ export default function CodeBlockComponent({ code }: { code: string }) {
             cursor: "pointer",
             borderRadius: "0 0 0 5px",
           }}
-          className="text-muted-foreground flex items-center gap-2 text-sm"
+          className="flex items-center gap-2 text-sm text-muted-foreground"
         >
           <p>Copied</p>
           <Check size={16} />
