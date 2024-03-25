@@ -54,18 +54,28 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <main className="flex h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c]">
+      <main className="flex h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c] pt-4">
         <NavbarComponent />
-        <div className="relative z-[50] grid h-full w-full grid-cols-12 grid-rows-12 px-4">
-          <div className="col-span-7 row-span-6 row-start-4 flex flex-col justify-around rounded-lg bg-slate-500/10 p-2 px-3 text-white">
-            <h1 className="font-bold leading-[1em] [font-size:_clamp(3.5em,3.5vw,8em)]">
+        <div className="relative z-[50] grid h-full w-screen grid-cols-12 grid-rows-12 gap-4">
+          <div className="col-span-7 row-span-6 row-start-4 ml-4 flex flex-col justify-around rounded-lg bg-slate-500/10 p-2 px-3 text-white">
+            <motion.h1
+              initial={{ opacity: 0, y: -4 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="font-bold leading-[1em] [font-size:_clamp(3.5em,3.5vw,8em)]"
+            >
               Streamline your development process
-            </h1>
-            <p className="w-[80%] text-muted-foreground">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: -4 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="w-[80%] text-muted-foreground"
+            >
               With copy and paste components that allow for customization right
               in the browser streamlining your development process allowing for
               faster product launch.
-            </p>
+            </motion.p>
             <div className="flex gap-4">
               <Link href={"/components"}>
                 <button className="h-12 w-[180px] rounded-md border px-2">
@@ -79,7 +89,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-span-full row-start-12 flex justify-between">
+          <div className="col-span-full row-start-12 flex justify-between px-4">
             <div className="flex items-center">
               <a href="https://twitter.com">
                 <svg
