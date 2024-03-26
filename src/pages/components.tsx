@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import NavbarComponent from "~/components/navbar";
+import NavbarComponent from "~/components/Navbar";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import components from "~/content/components";
@@ -54,7 +54,7 @@ export default function Home() {
               transition={{
                 duration: 1,
                 delay: (Math.floor(index / 3) * 0.1) % 0.3,
-              }} // Calculating delay
+              }}
               viewport={{ once: true }}
               className="col-span-1 flex aspect-square flex-col items-start justify-center space-y-4 rounded-xl bg-slate-500/10 p-2 px-3"
             >

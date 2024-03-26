@@ -28,8 +28,8 @@ export default function CodeBlockComponent({ code }: { code: string }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
-      <pre ref={codeRef}>
+    <div className="absolute max-h-full w-full overflow-scroll rounded-md">
+      <pre ref={codeRef} className="">
         <code className="language-jsx">{code}</code>
       </pre>
       {copied ? (
