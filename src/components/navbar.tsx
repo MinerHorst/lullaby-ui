@@ -183,7 +183,7 @@ export default function NavbarComponent() {
         </Link>
         <div className="text-muted-foreground">
           <ul className="flex gap-4">
-            <Link href={"/components"}>
+            <Link href={`/components`}>
               <li>Components</li>
             </Link>
             <Link href={"/pricing"}>

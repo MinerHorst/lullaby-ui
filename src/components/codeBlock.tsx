@@ -28,9 +28,9 @@ export default function CodeBlockComponent({ code }: { code: string }) {
   };
 
   return (
-    <div className="absolute max-h-full w-full overflow-scroll rounded-md">
-      <pre ref={codeRef} className="">
-        <code className="language-jsx">{code}</code>
+    <div className="absolute h-full w-full rounded-md">
+      <pre ref={codeRef} className="h-full w-full overflow-scroll">
+        <code className="language-jsx">{code.toString()}</code>
       </pre>
       {copied ? (
         <div
