@@ -104,43 +104,16 @@ const ComponentPage: React.FC = () => {
                     </div>
                     <div className="relative col-span-2 flex aspect-[1/0.492] flex-col items-center justify-start">
                       <CodeBlockComponent
-                        code={component.sampleCode(hsvaToHex(hsva), delay)}
+                        code={component.sampleCode(hsvaToHex(hsva), 0.1)}
                       />
-                      ;
                     </div>
                   </div>
                 </div>
-
                 <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
                   Customization
                 </h1>
-                <div className="grid h-screen grid-cols-3 gap-4">
-                  <div className="col-span-2 flex aspect-[1/0.492] flex-col space-y-2 rounded-md bg-violet-500/10 p-4">
-                    <input
-                      type="text"
-                      value={text}
-                      onChange={(e) => setText(e.target.value)}
-                      placeholder="Text"
-                      className="flex h-9 w-fit items-center rounded-md bg-[rgb(17,18,26)] p-1 px-2"
-                    />
-                    <input
-                      type="range"
-                      value={delay}
-                      min="0"
-                      max="1"
-                      step={0.1}
-                      onChange={(e) => setDelay(parseFloat(e.target.value))}
-                      placeholder="Delay"
-                      className="flex h-9 w-fit items-center rounded-md bg-[rgb(17,18,26)]"
-                    />
-                    <input
-                      type="text"
-                      value={text}
-                      onChange={(e) => setText(e.target.value)}
-                      placeholder="Text"
-                      className="flex h-9 w-fit items-center rounded-md bg-[rgb(17,18,26)] p-1 px-2"
-                    />
-                  </div>
+                <div className="grid h-fit grid-cols-3 gap-4 pb-4">
+                  <div className="col-span-2 flex aspect-[1/0.492] flex-col space-y-2 rounded-md bg-violet-500/10 p-4"></div>
                   <div className="relative col-span-1 flex aspect-square flex-col items-center justify-center space-y-4 rounded-md bg-violet-500/10 px-4">
                     <Wheel
                       color={hsva}
@@ -188,6 +161,43 @@ const ComponentPage: React.FC = () => {
                       <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
                         a: {hsva.a}
                       </span>
+                    </div>
+                  </div>
+                  <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
+                    Installation
+                  </h1>
+                  <div className="col-span-3 flex aspect-[1/0.5] flex-col space-y-4 rounded-md bg-violet-500/10 p-4">
+                    <h2>Install dependencies</h2>
+                    <div className="relative flex flex-col items-center justify-center">
+                      <CodeBlockComponent code="npm i framer-motion clsx tailwind-merge" />
+                    </div>
+                    <div>
+                      <h2>Add utils file</h2>
+                      <h3 className="text-sm text-muted-foreground">
+                        utils/cn.ts
+                      </h3>
+                    </div>
+                    <div className="relative flex flex-col items-center justify-center">
+                      <CodeBlockComponent
+                        code={`import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+  
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`}
+                      />
+                    </div>
+                    <div>
+                      <h2>Copy the Source Code</h2>
+                      <h3 className="text-sm text-muted-foreground">
+                        /components/ui/{component.slug.toLowerCase()}.tsx
+                      </h3>
+                    </div>
+
+                    <div className="relative flex flex-col items-center justify-center">
+                      <CodeBlockComponent
+                        code={component.sampleCode(hsvaToHex(hsva), 0.1)}
+                      />
                     </div>
                   </div>
                 </div>

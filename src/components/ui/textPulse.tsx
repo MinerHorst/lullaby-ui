@@ -22,7 +22,7 @@ const TextPulse = ({
             animate={{ opacity: [0, 1, 0] }}
             exit={{ opacity: 0 }}
             transition={{
-              delay: delay * index,
+              delay: (delay * index) / 2,
               repeat: Infinity,
               repeatDelay: 0.1 * characters.length * 1,
             }}

@@ -127,7 +127,7 @@ export default TextPulse;`;
     component: (color: string, text: string, delay: number) => (
       <>
         <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center [font-size:_clamp(2.5em,3vw,8em)]">
-          <TextPulse text={text} delay={delay} color={color} />
+          <TextPulse text={text} delay={0.2} color={color} />
         </div>
       </>
     ),

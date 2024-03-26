@@ -50,7 +50,7 @@ export default function Home() {
           </div>
 
           <div className="relative z-[60] h-[50%] w-full">
-            <CodeBlockComponent code={codeString} />
+            <CodeBlockComponent language="language-jsx" code={codeString} />
           </div>
         </div>
       </div>

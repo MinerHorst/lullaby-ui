@@ -3,7 +3,13 @@ import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 import { Check, Clipboard } from "lucide-react";
 
-export default function CodeBlockComponent({ code }: { code: string }) {
+export default function CodeBlockComponent({
+  language = "language-jsx",
+  code,
+}: {
+  language?: string;
+  code: string;
+}) {
   const codeRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -28,9 +34,9 @@ export default function CodeBlockComponent({ code }: { code: string }) {
   };
 
   return (
-    <div className="absolute h-full w-full rounded-md">
-      <pre ref={codeRef} className="h-full w-full overflow-scroll">
-        <code className="language-jsx">{code.toString()}</code>
+    <div className="relative flex h-full w-full items-center justify-center rounded-md">
+      <pre ref={codeRef} className="h-full min-h-fit w-full overflow-scroll">
+        <code className={language}>{code.toString()}</code>
       </pre>
       {copied ? (
         <div
