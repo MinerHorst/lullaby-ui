@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
-import { File, Search, X } from "lucide-react";
+import { File, Menu, Search, X } from "lucide-react";
 import components from "~/content/components";
 
 export default function NavbarComponent() {
@@ -119,7 +119,47 @@ export default function NavbarComponent() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="relative z-[500] flex min-h-[5svh] w-screen items-center justify-between bg-black px-4 text-white"
+        className="sticky left-0 top-0 z-[500] flex min-h-[5svh] w-screen items-center justify-between bg-black/10 p-4 text-white backdrop-blur-[2px] md:hidden"
+      >
+        <Link href={"/"} className="flex items-center gap-4">
+          <Image
+            src={logo_black}
+            alt="logo"
+            height={25}
+            className="rounded-md border border-muted-foreground"
+          ></Image>
+        </Link>
+        <div className="text-muted-foreground">
+          <ul className="flex gap-4">
+            <Link href={"/pricing"}>
+              <li>Pricing</li>
+            </Link>
+          </ul>
+        </div>
+        <div className="flex items-center gap-4">
+          <button
+            className="flex h-7 w-full items-center gap-4 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+            onClick={(e) => setIsOpen(!isOpen)}
+          >
+            <p className="text-muted-foreground">
+              <Search size={16} />
+            </p>
+            <p className="hidden text-muted-foreground lg:inline">
+              Search Components
+            </p>
+            <p className="inline text-muted-foreground lg:hidden">Search...</p>
+            <kbd className="pointer-events-none right-[0.3rem] hidden h-5 select-none flex-row items-center justify-center gap-1 rounded border border-muted-foreground p-2 px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 sm:flex">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </button>
+        </div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: +4 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="relative z-[500] hidden min-h-[5svh] w-screen items-center justify-between bg-black p-4 text-white md:m-4 md:flex"
       >
         <Link href={"/"} className="flex items-center gap-4">
           <Image

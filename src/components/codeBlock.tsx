@@ -34,7 +34,7 @@ export default function CodeBlockComponent({
   };
 
   return (
-    <div className="relative flex h-full w-full items-center justify-center rounded-md">
+    <div className="relative flex h-full max-h-[50vh] w-full items-center justify-center rounded-md">
       <pre ref={codeRef} className="h-full min-h-fit w-full overflow-scroll">
         <code className={language}>{code.toString()}</code>
       </pre>

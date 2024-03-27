@@ -8,7 +8,6 @@ import NavbarComponent from "~/components/Navbar";
 import CodeBlockComponent from "~/components/codeBlock";
 
 import { hsvaToHex } from "@uiw/color-convert";
-import { Button, MovingBorder } from "~/components/ui/moving-border";
 import ExampleButtonComponent from "~/components/index/examplebutton";
 import ColorChangingComponent from "~/components/ui/ColorChangingComponent";
 import Link from "next/link";
@@ -37,7 +36,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="absolute grid h-screen w-screen grid-cols-12 grid-rows-12 px-4">
-        <div className="col-span-6 col-start-7 row-span-8 row-start-3 flex h-full w-full flex-col justify-around rounded-lg bg-violet-950/40 px-4 py-4">
+        <div className="col-span-full row-span-full row-start-8 flex h-full w-full flex-col justify-around rounded-lg bg-violet-950/40 px-4 py-4 md:col-span-6 md:col-start-7 md:row-span-8 md:row-start-3">
           <div className="flex h-[40%] items-center justify-between">
             <div className="relative z-[40] flex h-full w-[60%] items-center justify-center rounded-md bg-white/10">
               <ColorChangingComponent color={hsvaToHex(hsva)} />
@@ -45,7 +44,7 @@ export default function Home() {
             <Wheel
               color={hsva}
               onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
-              className="relative z-[500] flex-shrink-0"
+              className="relative z-[500] hidden flex-shrink-0 md:inline"
             />
           </div>
 
@@ -54,15 +53,15 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <main className="flex h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c] pt-4">
+      <main className="flex min-h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c] pb-4 md:h-screen md:pt-0">
         <NavbarComponent />
-        <div className="relative z-[50] grid h-full w-screen grid-cols-12 grid-rows-12 gap-4">
-          <div className="col-span-7 row-span-6 row-start-4 ml-4 flex flex-col justify-around rounded-lg bg-slate-500/10 p-2 px-3 text-white">
+        <div className="relative z-[50] grid h-full w-screen grid-cols-12 grid-rows-12 gap-4 px-4 md:pt-0">
+          <div className="col-span-full row-span-6 flex flex-col justify-around space-y-4 rounded-lg bg-slate-500/10 text-white md:col-span-7 md:row-span-6 md:row-start-4">
             <motion.h1
               initial={{ opacity: 0, y: -4 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="font-bold leading-[1em] [font-size:_clamp(3.5em,3.5vw,8em)]"
+              className="px-4 pt-4 font-bold leading-[1em] [font-size:_clamp(1.5em,3.5vw,8em)]"
             >
               Streamline your development process
             </motion.h1>
@@ -70,26 +69,31 @@ export default function Home() {
               initial={{ opacity: 0, y: -4 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="w-[80%] text-muted-foreground"
+              className="w-[80%] px-4 text-muted-foreground"
             >
               With copy and paste components that allow for customization right
               in the browser streamlining your development process allowing for
               faster product launch.
             </motion.p>
-            <div className="flex gap-4">
+            <div className="flex justify-start px-4 pb-4 md:justify-start">
               <Link href={"/components"}>
-                <button className="h-12 w-[180px] rounded-md border px-2">
+                <button className="mr-4 inline h-12 rounded-md border px-2 md:hidden">
+                  Components
+                </button>
+              </Link>
+              <Link href={"/components"}>
+                <button className="mr-4 hidden h-12 w-[180px] rounded-md border px-2 md:inline">
                   Browse Components
                 </button>
               </Link>
 
-              <button className="h-12 w-[180px] rounded-md border bg-white px-2 text-black">
+              <button className="h-12 rounded-md border bg-white px-2 text-black md:w-[180px]">
                 Ressources
               </button>
             </div>
           </div>
 
-          <div className="col-span-full row-start-12 flex justify-between px-4">
+          <div className="col-span-full row-start-12 hidden justify-between px-4 md:flex">
             <div className="flex items-center">
               <a href="https://twitter.com">
                 <svg

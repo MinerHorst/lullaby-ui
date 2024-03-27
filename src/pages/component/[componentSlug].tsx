@@ -104,7 +104,7 @@ const ComponentPage: React.FC = () => {
                     </div>
                     <div className="relative col-span-2 flex aspect-[1/0.492] flex-col items-center justify-start">
                       <CodeBlockComponent
-                        code={component.sampleCode(hsvaToHex(hsva), 0.1)}
+                        code={component.sampleCode(hsvaToHex(hsva), 0.2)}
                       />
                     </div>
                   </div>
@@ -196,7 +196,7 @@ export function cn(...inputs: ClassValue[]) {
 
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
-                        code={component.sampleCode(hsvaToHex(hsva), 0.1)}
+                        code={component.sampleCode(hsvaToHex(hsva), 0.2)}
                       />
                     </div>
                   </div>

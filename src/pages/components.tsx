@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
-    <main className="flex h-screen w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] py-4">
+    <main className="flex h-screen w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] pb-4">
       <NavbarComponent />
       <div className="grid h-full w-full grid-cols-12 grid-rows-12 pt-4 text-white">
         <div className="col-span-2 col-start-1 row-span-full row-start-1 space-y-6 overflow-scroll px-4 md:inline">
