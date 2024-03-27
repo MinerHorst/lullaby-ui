@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
 import { File, Search, X } from "lucide-react";
+import components from "~/content/components";
 
 export default function NavbarComponent() {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,72 +92,20 @@ export default function NavbarComponent() {
                   <Command.Group className="mx-2 text-sm font-light text-muted-foreground">
                     <h1 className="px-2 py-2 text-xs">Integrations</h1>
                     <div className="text-white">
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
-                        <div className="px-2">
-                          <a
-                            href={"/docs/integrations/homepage"}
-                            className="flex items-center gap-2"
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {components.map((component, index) => (
+                          <Command.Item
+                            className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]"
+                            key={component.id}
                           >
-                            <File size={16} />
-                            <p>Homepage</p>
-                          </a>
-                        </div>
-                      </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
-                        <div className="px-2">
-                          <a
-                            href={"/docs/integrations/notion"}
-                            className="flex items-center gap-2"
-                          >
-                            <File size={16} />
-                            <p>Notion</p>
-                          </a>
-                        </div>
-                      </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
-                        <div className="px-2">
-                          <Link
-                            href={"/docs/integrations/teams"}
-                            className="flex items-center gap-2"
-                          >
-                            <File size={16} />
-                            <p>Microsoft Teams</p>
-                          </Link>
-                        </div>
-                      </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
-                        <div className="px-2">
-                          <a
-                            href={"/docs/integrations/teams"}
-                            className="flex items-center gap-2"
-                          >
-                            <File size={16} />
-                            <p>Shopify</p>
-                          </a>
-                        </div>
-                      </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
-                        <div className="px-2">
-                          <a
-                            href={"/docs/integrations/github"}
-                            className="flex items-center gap-2"
-                          >
-                            <File size={16} />
-                            <p>GitHub</p>
-                          </a>
-                        </div>
-                      </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
-                        <div className="px-2">
-                          <a
-                            href={"/docs/integrations/clickup"}
-                            className="flex items-center gap-2"
-                          >
-                            <File size={16} />
-                            <p>ClickUp</p>
-                          </a>
-                        </div>
-                      </Command.Item>
+                            <div className="px-2">
+                              <a href={`/component/${component.slug}`}>
+                                {component.name}
+                              </a>
+                            </div>
+                          </Command.Item>
+                        ))}
+                      </ul>
                     </div>
                   </Command.Group>
                 </Command.List>
