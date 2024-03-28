@@ -1,20 +1,22 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import CodeBlockComponent from "~/components/codeBlock";
 import ProductComponent from "~/components/ui/ProductComponent";
+import OTPComponent from "~/components/ui/otpComponent";
 import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
 import Typewriter from "~/components/ui/typeWriter";
 
-export interface Component {
+export interface Component<Props = any> {
   id: number;
   name: string;
   slug: string;
   description: string;
-  sampleCode: (color: string, delay: number) => string;
-  component: (color: string, text: string, delay: number) => React.ReactNode; // Include text parameter here
+  sampleCode: (props: Props) => string;
+  component: (props: Props) => React.ReactNode; // Updated signature to accept any props
   image: string;
   image_alt: string;
   customization: boolean;
+  customizations: string[];
   dependencies: string[];
 }
 
@@ -24,7 +26,7 @@ const components: Component[] = [
     name: "Text Generate Effect",
     slug: "text-generator",
     description: "The popular text generating effect from ChatGPT",
-    sampleCode: (color: string, delay: number) => {
+    sampleCode: (props: { color: string; text: string }) => {
       return `import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -51,7 +53,7 @@ const TextGenerator = ({
               duration: 0.5,
               delay: delay * idx,
             }}
-            style={{ display: "inline-block", color: ${color} }}
+            style={{ display: "inline-block", color: ${props.color} }}
             className="pr-1 opacity-0"
           >
             {word}
@@ -64,13 +66,13 @@ const TextGenerator = ({
 
 export default TextGenerator;`;
     },
-    component: (color: string, text: string, delay: number) => (
+    component: (props: { color: string; text: string; delay: number }) => (
       <div className="flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
         <TextGenerator
           inputText={
             "Hello, World! My name is Luis and I'm 16 years old. Lullaby UI is really more of a passion project for me, but be sure to share it on social media, if you like it!"
           }
-          color={color}
+          color={props.color}
           delay={0.1}
         ></TextGenerator>
       </div>
@@ -78,6 +80,7 @@ export default TextGenerator;`;
     image: "button-image-url.jpg",
     image_alt: "Button Image",
     customization: true,
+    customizations: [],
     dependencies: [],
   },
   {
@@ -85,7 +88,7 @@ export default TextGenerator;`;
     name: "Typewriter Effect",
     slug: "input",
     description: "A text input component.",
-    sampleCode: (color: string, delay: number) => {
+    sampleCode: (props: { color: string; text: string }) => {
       return `import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -136,6 +139,7 @@ export default Typewriter;`;
     image: "input-image-url.jpg",
     image_alt: "Input Image",
     customization: true,
+    customizations: [],
     dependencies: [],
   },
   {
@@ -143,13 +147,13 @@ export default Typewriter;`;
     name: "Textpulse Effect",
     slug: "textpulse",
     description: "Text-Effect that simulates a pulse from left to right.",
-    sampleCode: (color: string, delay: number) => {
+    sampleCode: (props: { color: string; text: string; delay: number }) => {
       return `import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const TextPulse = ({
   text,
-  delay = ${delay},
+  delay = ${props.delay},
 }: {
   text: string;
   delay: number;
@@ -157,7 +161,7 @@ const TextPulse = ({
   const characters = [...text];
 
   return (
-    <div style={{ color: ${color} }}>
+    <div style={{ color: ${props.color} }}>
       <AnimatePresence>
         {characters.map((letter, index) => (
           <motion.span
@@ -181,16 +185,21 @@ const TextPulse = ({
 
 export default TextPulse;`;
     },
-    component: (color: string, text: string, delay: number) => (
+    component: (props: { color: string; text: string }) => (
       <>
         <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center [font-size:_clamp(2.5em,3vw,8em)]">
-          <TextPulse text={text} delay={0.2} color={color} />
+          <TextPulse
+            text={props.text || "Hello, World!?"}
+            delay={0.2}
+            color={props.color}
+          />
         </div>
       </>
     ),
     image: "input-image-url.jpg",
     image_alt: "Input Image",
     customization: true,
+    customizations: ["text"],
     dependencies: [],
   },
   {
@@ -198,7 +207,7 @@ export default TextPulse;`;
     name: "Product Cell Component",
     slug: "productcell",
     description: "A product cell from apples website.",
-    sampleCode: (color: string, delay: number) => {
+    sampleCode: (props: { color: string; text: string }) => {
       return `import React, { useState } from "react";
 
 export interface Product {
@@ -292,6 +301,7 @@ export default function ProductComponent() {
     image: "input-image-url.jpg",
     image_alt: "Input Image",
     customization: false,
+    customizations: [],
     dependencies: [],
   },
   {
@@ -299,7 +309,7 @@ export default function ProductComponent() {
     name: "Codeblock Component",
     slug: "codeblock",
     description: "A simple Code-Block Component based on the Prism-js Library.",
-    sampleCode: (color: string, delay: number) => {
+    sampleCode: (props: { color: string; text: string }) => {
       return `import React, { useEffect, useRef, useState } from "react";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
@@ -377,15 +387,132 @@ export default function CodeBlockComponent({
   );
 }`;
     },
-    component: () => (
+    component: (props: { color: string; Code: string }) => (
       <>
-        <CodeBlockComponent code={`print("Hello World")`} />
+      {if (Code.length >= 1) {
+        
+      }}
+        <CodeBlockComponent
+          code={
+            `import React from "react";
+            
+export default function ButtonComponent
+  deedede
+)` || `${props.Code}`
+          }
+        />
       </>
     ),
     image: "something.jpg",
     image_alt: "something",
     customization: true,
+    customizations: ["Code"],
     dependencies: ["prismjs", "lucide-react"],
+  },
+  {
+    id: 6,
+    name: "OTP Component",
+    slug: "otp",
+    description: "A simple OTP (One-Time Password) Interface.",
+    sampleCode: (props: { length: number; separatorIndex: number }) => {
+      return `import React, {
+import React, {
+  useState,
+  useRef,
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+} from "react";
+
+interface OTPComponentProps {
+  length: number;
+  separatorIndex: number;
+}
+
+const OTPComponent: React.FC<OTPComponentProps> = ({
+  length,
+  separatorIndex,
+}) => {
+  const [otp, setOTP] = useState<string[]>(Array(length).fill(""));
+  const otpInputs = useRef<HTMLInputElement[]>(Array(length).fill(undefined));
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    const value = e.target.value;
+    if (!isNaN(Number(value)) && value.length <= 1) {
+      const newOTP = [...otp];
+      newOTP[index] = value;
+      setOTP(newOTP);
+      if (value !== "" && index < length - 1 && otpInputs.current[index + 1]) {
+        otpInputs.current[index + 1]?.focus();
+      }
+    }
+  };
+
+  const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === "Backspace" && index > 0 && otp[index] === "") {
+      otpInputs.current[index - 1]?.focus();
+    }
+  };
+
+  useEffect(() => {
+    if (otp.every((digit) => digit !== "")) {
+      console.log("All inputs are filled:", otp.join("")); //You can handle an action once the OTP is filled here.
+    }
+  }, [otp]);
+
+  return (
+    <div>
+      {otp.map((digit, index) => (
+        <React.Fragment>
+          <input
+            key={index}
+            type="text"
+            maxLength={1}
+            value={digit}
+            onChange={(e) => handleChange(e, index)}
+            onKeyUp={(e) => handleKeyUp(e, index)}
+            ref={(input) => {
+              if (input && otpInputs.current) {
+                otpInputs.current[index] = input;
+                otpInputs.current = otpInputs.current.filter(
+                  (item) => item !== undefined,
+                );
+              }
+            }}
+            className="aspect-square items-center rounded-md border border-neutral-400 bg-transparent text-center text-white"
+            style={{ width: "30px", marginRight: "5px" }}
+          />
+          {index === separatorIndex - 1 && index !== length - 1 && (
+            <span
+              style={{ marginRight: "5px" }}
+              className="h-9 border-[0.3px] border-neutral-400"
+            ></span>
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
+export default OTPComponent;`;
+    },
+    component: (props: { length: number; separatorIndex: number }) => (
+      <>
+        <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center">
+          <OTPComponent
+            separatorIndex={props.separatorIndex}
+            length={props.length}
+          />
+          <div>{props.length}</div>
+          <div>{props.separatorIndex}</div>
+        </div>
+      </>
+    ),
+    image: "something.jpg",
+    image_alt: "something",
+    customization: true,
+    customizations: [],
+    dependencies: [],
   },
 ];
 
