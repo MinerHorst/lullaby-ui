@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
-import { File, Menu, Search, X } from "lucide-react";
+import { Component, File, Menu, Search, X } from "lucide-react";
 import components from "~/content/components";
 
 export default function NavbarComponent() {
@@ -27,14 +27,11 @@ export default function NavbarComponent() {
     <>
       {isOpen && (
         <div className="fixed left-0 top-0 z-[200] flex h-screen w-full flex-col items-center justify-center overflow-hidden text-white backdrop-blur-[2px]">
-          <div className="scrollbar flex max-h-[40%] min-h-[40%] min-w-[80%] flex-col overflow-y-scroll rounded-md border-[1px] border-muted-foreground bg-black md:min-w-[40%] md:max-w-[60%]">
+          <div className="relative flex max-h-[50%] min-h-[50%] w-[80%] flex-col overflow-y-scroll rounded-md bg-[rgb(17,18,26)] md:w-[40%]">
             <Command label="Command Menu" className="h-full w-full">
-              <div className="fixed flex min-w-[80%] items-center justify-center gap-2 rounded-t-lg border-b-[0.5px] border-muted-foreground px-1 md:min-w-[40%] md:max-w-[60%]">
-                <div className="flex h-full w-full items-center gap-2 bg-black px-3 py-2">
-                  <Search
-                    size={16}
-                    className="bg-black text-muted-foreground"
-                  />
+              <div className="sticky top-0 flex w-full items-center justify-center gap-2">
+                <div className="flex h-full w-full items-center gap-2 bg-[rgb(17,18,26)] px-3 py-2">
+                  <Search size={16} className="text-muted-foreground" />
                   <Command.Input
                     placeholder="Search..."
                     className="flex w-full flex-row items-center justify-between border-transparent bg-transparent shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[rgb(131,131,138)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50"
@@ -45,16 +42,16 @@ export default function NavbarComponent() {
                 </div>
               </div>
 
-              <div className="mt-[7%] py-4">
+              <div className="py-4">
                 <Command.List className="py-2">
                   <Command.Empty className="px-2 text-muted-foreground">
                     No results found.
                   </Command.Empty>
 
                   <Command.Group className="mx-2 text-sm font-light text-muted-foreground">
-                    <h1 className="px-2 py-2 text-xs">Getting Started</h1>
+                    <h1 className="px-2 py-2 text-xs">Installation</h1>
                     <div className="text-white">
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
+                      <Command.Item className="rounded-md py-2 text-base hover:bg-neutral-300/10">
                         <div className="px-2">
                           <a
                             href={"/docs/quickstart"}
@@ -65,7 +62,7 @@ export default function NavbarComponent() {
                           </a>
                         </div>
                       </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
+                      <Command.Item className="rounded-md py-2 text-base hover:bg-neutral-300/10">
                         <div className="px-2">
                           <a
                             href={"/docs/members"}
@@ -76,7 +73,7 @@ export default function NavbarComponent() {
                           </a>
                         </div>
                       </Command.Item>
-                      <Command.Item className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]">
+                      <Command.Item className="rounded-md py-2 text-base hover:bg-neutral-300/10">
                         <div className="px-2">
                           <Link
                             href={"/docs/organizations"}
@@ -89,17 +86,22 @@ export default function NavbarComponent() {
                       </Command.Item>
                     </div>
                   </Command.Group>
+
                   <Command.Group className="mx-2 text-sm font-light text-muted-foreground">
                     <h1 className="px-2 py-2 text-xs">Integrations</h1>
                     <div className="text-white">
-                      <ul className="space-y-2 text-sm text-muted-foreground">
+                      <ul className="space-y-2 text-sm text-white">
                         {components.map((component, index) => (
                           <Command.Item
-                            className="rounded-md py-2 text-base hover:bg-[rgb(21,21,21)]"
+                            className="rounded-md py-2 text-base hover:bg-neutral-300/10"
                             key={component.id}
                           >
                             <div className="px-2">
-                              <a href={`/component/${component.slug}`}>
+                              <a
+                                className="flex items-center gap-2"
+                                href={`/component/${component.slug}`}
+                              >
+                                <Component size={16} />
                                 {component.name}
                               </a>
                             </div>
@@ -138,7 +140,7 @@ export default function NavbarComponent() {
         </div>
         <div className="flex items-center gap-4">
           <button
-            className="flex h-7 w-full items-center gap-4 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+            className="flex h-9 w-full items-center gap-4 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
             onClick={(e) => setIsOpen(!isOpen)}
           >
             <p className="text-muted-foreground">
@@ -159,7 +161,7 @@ export default function NavbarComponent() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="relative z-[500] hidden min-h-[5svh] w-screen items-center justify-between bg-black p-4 text-white md:m-4 md:flex"
+        className="relative z-[500] hidden min-h-[5svh] w-screen items-center justify-between p-4 text-white md:m-4 md:flex"
       >
         <Link href={"/"} className="flex items-center gap-4">
           <Image
@@ -168,6 +170,7 @@ export default function NavbarComponent() {
             height={25}
             className="rounded-md border border-muted-foreground"
           ></Image>
+
           <p className="text-xl font-medium">Lullaby UI</p>
         </Link>
         <div className="text-muted-foreground">

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-const TextAppear = ({
+const Typewriter = ({
   text,
   delay = 0.2,
   color,
@@ -23,10 +23,11 @@ const TextAppear = ({
             exit={{ opacity: 0 }}
             transition={{
               delay: delay * index,
+              duration: 0.1,
             }}
             className="inline-block"
           >
-            {letter}
+            <div>{letter === " " ? "\u00A0" : letter} </div>{" "}
           </motion.span>
         ))}
       </AnimatePresence>
@@ -34,4 +35,4 @@ const TextAppear = ({
   );
 };
 
-export default TextAppear;
+export default Typewriter;

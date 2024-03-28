@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
-    <main className="flex h-screen w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] pb-4">
+    <main className="flex h-screen w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] py-4">
       <NavbarComponent />
       <div className="grid h-full w-full grid-cols-12 grid-rows-12 pt-4 text-white">
         <div className="col-span-2 col-start-1 row-span-full row-start-1 space-y-6 overflow-scroll px-4 md:inline">
@@ -65,10 +65,12 @@ export default function Home() {
               >
                 <img
                   src={component.image}
-                  className="h-full w-full border"
+                  className="h-full w-full rounded-md"
                   alt={component.image_alt}
                 />
-                <p>{component.name}</p>
+                <p className="w-fit rounded-md bg-[rgb(17,18,26)] p-2">
+                  {component.name}
+                </p>
               </motion.div>
             </Link>
           ))}

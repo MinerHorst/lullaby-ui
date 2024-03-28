@@ -88,7 +88,7 @@ const ComponentPage: React.FC = () => {
 
             <div className="col-span-10 col-start-3 row-span-full row-start-1 mr-4 flex flex-col overflow-scroll">
               <div className="w-full flex-col space-y-4 rounded-lg bg-slate-500/10 px-4 py-4 text-white">
-                <div className="flex h-[80vh] flex-col justify-between">
+                <div className="flex h-[60vh] flex-col justify-between">
                   <div className="space-y-4">
                     <h1 className="font-bold leading-none [font-size:_clamp(3.5em,3.5vw,8em)]">
                       {component.name}
@@ -109,67 +109,84 @@ const ComponentPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
+
+                <h1 className="g- font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
                   Customization
                 </h1>
-                <div className="grid h-fit grid-cols-3 gap-4 pb-4">
-                  <div className="col-span-2 flex aspect-[1/0.492] flex-col space-y-2 rounded-md bg-violet-500/10 p-4"></div>
-                  <div className="relative col-span-1 flex aspect-square flex-col items-center justify-center space-y-4 rounded-md bg-violet-500/10 px-4">
-                    <Wheel
-                      color={hsva}
-                      onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
-                      className="relative z-[500] flex-shrink-0"
-                    />
-                    <div className="flex items-center gap-2 rounded-md bg-[rgb(17,18,26)] p-1 px-2">
-                      <div
-                        className="h-3 w-3"
-                        style={{ backgroundColor: hsvaToHex(hsva) }}
-                      ></div>
-                      {hsvaToHex(hsva)}
-                    </div>
 
-                    <div className="relative h-3 w-full rounded-full bg-gradient-to-r from-black to-white">
-                      <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={hsva.v}
-                        onChange={(e) =>
-                          setHsva({ ...hsva, v: parseInt(e.target.value) })
-                        }
-                        className="absolute z-20 h-full w-full opacity-0"
-                      />
-                      <div
-                        id="sliderButton"
-                        className="pointer-events-none absolute z-10 h-7 w-0.5 border border-gray-100 bg-white"
-                        style={{
-                          left: `calc(${hsva.v}%)`,
-                          top: "calc(50% - 14px)",
-                        }}
-                      ></div>
+                <div className="grid h-fit grid-cols-3 gap-4">
+                  {component.customization ? (
+                    <>
+                      <div className="col-span-2 flex aspect-[1/0.583] flex-col space-y-2 rounded-md bg-violet-500/10"></div>
+                      <div className="relative col-span-1 flex aspect-square flex-col items-center justify-center space-y-4 rounded-md bg-violet-500/10 p-4 px-4">
+                        <Wheel
+                          color={hsva}
+                          onChange={(color) =>
+                            setHsva({ ...hsva, ...color.hsva })
+                          }
+                          className="relative z-[500] flex-shrink-0"
+                        />
+                        <div className="flex items-center gap-2 rounded-md bg-[rgb(17,18,26)] p-1 px-2">
+                          <div
+                            className="h-3 w-3"
+                            style={{ backgroundColor: hsvaToHex(hsva) }}
+                          ></div>
+                          {hsvaToHex(hsva)}
+                        </div>
+
+                        <div className="relative h-3 w-full rounded-full bg-gradient-to-r from-black to-white">
+                          <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={hsva.v}
+                            onChange={(e) =>
+                              setHsva({ ...hsva, v: parseInt(e.target.value) })
+                            }
+                            className="absolute z-20 h-full w-full opacity-0"
+                          />
+                          <div
+                            id="sliderButton"
+                            className="pointer-events-none absolute z-10 h-7 w-0.5 border border-gray-100 bg-white"
+                            style={{
+                              left: `calc(${hsva.v}%)`,
+                              top: "calc(50% - 14px)",
+                            }}
+                          ></div>
+                        </div>
+
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
+                            h: {hsva.h}
+                          </span>
+                          <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
+                            s: {hsva.s}
+                          </span>
+                          <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
+                            v: {hsva.v}
+                          </span>
+                          <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
+                            a: {hsva.a}
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="col-span-full w-full rounded-md bg-violet-500/10 p-4">
+                      <p className="rounded-md bg-[rgb(17,18,26)] p-4">
+                        There's no customization for this component.
+                      </p>
                     </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
-                        h: {hsva.h}
-                      </span>
-                      <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
-                        s: {hsva.s}
-                      </span>
-                      <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
-                        v: {hsva.v}
-                      </span>
-                      <span className="rounded-md bg-[rgb(17,18,26)] p-1 px-2">
-                        a: {hsva.a}
-                      </span>
-                    </div>
-                  </div>
+                  )}
                   <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
                     Installation
                   </h1>
-                  <div className="col-span-3 flex aspect-[1/0.5] flex-col space-y-4 rounded-md bg-violet-500/10 p-4">
+                  <div className="col-span-3 mb-10 flex aspect-[1/0.5] flex-col space-y-4 rounded-md bg-violet-500/10 p-4">
                     <h2>Install dependencies</h2>
                     <div className="relative flex flex-col items-center justify-center">
-                      <CodeBlockComponent code="npm i framer-motion clsx tailwind-merge" />
+                      <CodeBlockComponent
+                        code={`npm i framer-motion ${component.dependencies.join(" ")} clsx tailwind-merge`}
+                      />
                     </div>
                     <div>
                       <h2>Add utils file</h2>
