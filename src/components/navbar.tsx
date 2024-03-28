@@ -58,7 +58,7 @@ export default function NavbarComponent() {
                             className="flex items-center gap-2"
                           >
                             <File size={16} />
-                            <p>Quickstart</p>
+                            <p>Next.js</p>
                           </a>
                         </div>
                       </Command.Item>
@@ -69,7 +69,7 @@ export default function NavbarComponent() {
                             className="flex items-center gap-2"
                           >
                             <File size={16} />
-                            <p>Members</p>
+                            <p>Tailwind CSS</p>
                           </a>
                         </div>
                       </Command.Item>
@@ -80,7 +80,7 @@ export default function NavbarComponent() {
                             className="flex items-center gap-2"
                           >
                             <File size={16} />
-                            <p>Organizations</p>
+                            <p>Utilities</p>
                           </Link>
                         </div>
                       </Command.Item>
@@ -88,7 +88,7 @@ export default function NavbarComponent() {
                   </Command.Group>
 
                   <Command.Group className="mx-2 text-sm font-light text-muted-foreground">
-                    <h1 className="px-2 py-2 text-xs">Integrations</h1>
+                    <h1 className="px-2 py-2 text-xs">Components</h1>
                     <div className="text-white">
                       <ul className="space-y-2 text-sm text-white">
                         {components.map((component, index) => (
@@ -161,7 +161,7 @@ export default function NavbarComponent() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="relative z-[500] hidden min-h-[5svh] w-screen items-center justify-between p-4 text-white md:m-4 md:flex"
+        className="relative z-[500] m-4 hidden min-h-[5svh] w-screen items-center justify-between px-4 text-white md:flex"
       >
         <Link href={"/"} className="flex items-center gap-4">
           <Image

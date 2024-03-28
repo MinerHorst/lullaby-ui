@@ -389,18 +389,17 @@ export default function CodeBlockComponent({
     },
     component: (props: { color: string; Code: string }) => (
       <>
-      {if (Code.length >= 1) {
-        
-      }}
-        <CodeBlockComponent
-          code={
-            `import React from "react";
+        {!props.Code ? (
+          <CodeBlockComponent
+            code={`import React from "react";
             
-export default function ButtonComponent
-  deedede
-)` || `${props.Code}`
-          }
-        />
+export default function ButtonComponent() {
+  // Your code here
+}`}
+          />
+        ) : (
+          <CodeBlockComponent code={props.Code} />
+        )}
       </>
     ),
     image: "something.jpg",
@@ -506,6 +505,25 @@ export default OTPComponent;`;
           <div>{props.length}</div>
           <div>{props.separatorIndex}</div>
         </div>
+      </>
+    ),
+    image: "something.jpg",
+    image_alt: "something",
+    customization: true,
+    customizations: [],
+    dependencies: [],
+  },
+  {
+    id: 7,
+    name: "Notification",
+    slug: "notification",
+    description: "A simple OTP (One-Time Password) Interface.",
+    sampleCode: (props: { length: number; separatorIndex: number }) => {
+      return ``;
+    },
+    component: (props: { length: number; separatorIndex: number }) => (
+      <>
+        <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center"></div>
       </>
     ),
     image: "something.jpg",
