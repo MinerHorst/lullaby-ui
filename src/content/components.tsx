@@ -1,3 +1,4 @@
+import { Component } from "lucide-react";
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import CodeBlockComponent from "~/components/codeBlock";
 import ProductComponent from "~/components/ui/ProductComponent";
@@ -6,6 +7,17 @@ import Sonner from "~/components/ui/sonner";
 import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
 import Typewriter from "~/components/ui/typeWriter";
+
+export interface ComponentLink {
+  name: string;
+  link: string;
+}
+
+export interface Property {
+  propertyName: string;
+  propertyType: string;
+  propertyDescription: string;
+}
 
 export interface Component<Props = any> {
   id: number;
@@ -21,8 +33,11 @@ export interface Component<Props = any> {
   dependencies: string[];
   maintainer?: string;
   maintainerlink?: string;
-  links?: {};
-  usage?: (props: Props) => string;
+
+  links: ComponentLink[];
+  properties: { [name: string]: Property[] };
+
+  usage: (props: Props) => string;
 }
 
 const components: Component[] = [
@@ -87,6 +102,36 @@ export default TextGenerator;`;
     customization: true,
     customizations: [],
     dependencies: ["framer-motion"],
+    links: [],
+    usage: (props: { color: string; text: string }) => {
+      return ``;
+    },
+    properties: {
+      Appearance: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+      Behavior: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+    },
   },
   {
     id: 2,
@@ -146,6 +191,36 @@ export default Typewriter;`;
     customization: true,
     customizations: [],
     dependencies: ["framer-motion"],
+    links: [],
+    usage: (props: { color: string; text: string }) => {
+      return ``;
+    },
+    properties: {
+      Appearance: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+      Behavior: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+    },
   },
   {
     id: 3,
@@ -206,6 +281,36 @@ export default TextPulse;`;
     customization: true,
     customizations: ["text"],
     dependencies: [],
+    links: [],
+    usage: (props: { color: string; text: string }) => {
+      return ``;
+    },
+    properties: {
+      Appearance: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+      Behavior: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+    },
   },
   {
     id: 4,
@@ -308,6 +413,36 @@ export default function ProductComponent() {
     customization: false,
     customizations: [],
     dependencies: ["framer-motion"],
+    links: [],
+    usage: (props: { color: string; text: string }) => {
+      return ``;
+    },
+    properties: {
+      Appearance: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+      Behavior: [
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+        {
+          propertyName: "",
+          propertyType: "",
+          propertyDescription: "",
+        },
+      ],
+    },
   },
   {
     id: 5,
@@ -412,6 +547,25 @@ export default function ButtonComponent() {
     customization: true,
     customizations: ["Code"],
     dependencies: ["framer-motion", "prismjs", "lucide-react"],
+    links: [],
+    usage: (props: { color: string; text: string }) => {
+      return ``;
+    },
+    properties: {
+      Codeblock: [
+        {
+          propertyName: "language",
+          propertyType: "string",
+          propertyDescription:
+            "Language of the provided code - used for highlighting.",
+        },
+        {
+          propertyName: "code",
+          propertyType: "string",
+          propertyDescription: "The code that is displayed.",
+        },
+      ],
+    },
   },
   {
     id: 6,
@@ -517,6 +671,24 @@ export default OTPComponent;`;
     customization: true,
     customizations: [],
     dependencies: ["framer-motion"],
+    links: [],
+    usage: (props: { color: string; text: string }) => {
+      return ``;
+    },
+    properties: {
+      OTP: [
+        {
+          propertyName: "length",
+          propertyType: "number",
+          propertyDescription: "Length of the OTP Component.",
+        },
+        {
+          propertyName: "seperatorIndex",
+          propertyType: "number",
+          propertyDescription: "Index where a seperator is displayed.",
+        },
+      ],
+    },
   },
   {
     id: 7,
@@ -576,9 +748,104 @@ export { Toaster };`;
     dependencies: ["framer-motion", "sonner"],
     maintainer: "Emil Kowalski",
     maintainerlink: "https://emilkowal.ski",
-    links: { docs: "https://sonner.emilkowal.ski/getting-started" },
+    links: [
+      { name: "Docs", link: "https://example.com/docs" },
+      { name: "GitHub Repo", link: "https://github.com/example/repo" },
+    ],
     usage: (props: { length: number; separatorIndex: number }) => {
-      return ``;
+      return `//Add a Toaster into the root of your project.
+import { Toaster } from "~/components/ui/toaster";
+
+<Toaster />
+
+
+//Display a Toast
+import { toast } from "sonner";
+
+
+<button
+className="rounded-md border px-2 py-1"
+onClick={() =>
+  toast.success("Event has been created", {
+    description: "Sunday, December 03, 2023 at 9:00 AM",
+    duration: 3000,
+    action: {
+      label: "Undo",
+      onClick: () => console.log("Undo"),
+    },
+  })
+}
+>
+  Success
+</button>`;
+    },
+    properties: {
+      toast: [
+        {
+          propertyName: ".message",
+          propertyType: "method",
+          propertyDescription: `toast.message("Normal Toast")`,
+        },
+        {
+          propertyName: ".success",
+          propertyType: "method",
+          propertyDescription: `toast.success("Success Toast")`,
+        },
+
+        {
+          propertyName: ".info",
+          propertyType: "method",
+          propertyDescription: `toast.info("Info Toast")`,
+        },
+        {
+          propertyName: ".loading",
+          propertyType: "method",
+          propertyDescription: `toast.loading("Success Toast")`,
+        },
+        {
+          propertyName: ".warning",
+          propertyType: "method",
+          propertyDescription: `toast.warning("Warning Toast")`,
+        },
+        {
+          propertyName: ".error",
+          propertyType: "method",
+          propertyDescription: `toast.error("Error Toast")`,
+        },
+        {
+          propertyName: ".error",
+          propertyType: "method",
+          propertyDescription: `toast.error("Error Toast")`,
+        },
+        {
+          propertyName: "description",
+          propertyType: "string",
+          propertyDescription: `toast("Toast", {description: "Description"})`,
+        },
+        {
+          propertyName: "duration",
+          propertyType: "number",
+          propertyDescription: `toast("Toast", {duration: 3000})`,
+        },
+        {
+          propertyName: "icon",
+          propertyType: "React.ReactNode",
+          propertyDescription: `toast("Toast", {icon: <Icon />})`,
+        },
+      ],
+      Toaster: [
+        {
+          propertyName: "visibleToasts",
+          propertyType: "number",
+          propertyDescription: "Amount of visible toasts",
+        },
+        {
+          propertyName: "position",
+          propertyType: "string",
+          propertyDescription:
+            "Place where the toast is rendered: bottom-right",
+        },
+      ],
     },
   },
 ];

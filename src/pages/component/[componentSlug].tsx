@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import NavbarComponent from "~/components/Navbar";
 import CodeBlockComponent from "~/components/codeBlock";
-import { Toaster } from "~/components/ui/notification/toaster";
 
 import components, { Component } from "~/content/components";
 
@@ -17,39 +16,15 @@ const findComponentById = (componentSlug: string): Component | undefined => {
 };
 
 const ComponentPage: React.FC = () => {
-  const [color, setColor] = useState("");
-  const [text, setText] = useState("Hello World!");
-  const [delay, setDelay] = useState(0.2);
-
   const [key, setKey] = useState(0);
 
   const remountComponent = () => {
     setKey((prevKey) => prevKey + 1);
   };
 
-  const [sliderPos, setSliderPos] = useState(50);
-  console.log(sliderPos);
-
-  const handleSliderChange = (event: any) => {
-    setSliderPos(event.target.value);
-  };
-
   type ComponentProps = {
     [key: string]: any;
   };
-
-  useEffect(() => {
-    const currentUrl =
-      typeof window !== "undefined" ? window.location.href : "";
-    const queryString = currentUrl.split("?")[1];
-    const urlParams = new URLSearchParams(queryString);
-
-    const color = urlParams.get("color");
-
-    if (color) {
-      setColor(color);
-    }
-  }, []);
 
   const router = useRouter();
   const { componentSlug } = router.query;
@@ -90,6 +65,8 @@ const ComponentPage: React.FC = () => {
     handleCustomizationChange(e, index);
     remountComponent();
   };
+
+  const componentLinks = Object.entries(component.links);
 
   return (
     <>
@@ -313,6 +290,17 @@ export function cn(...inputs: ClassValue[]) {
                           code={component.sampleCode({ ...componentProps })}
                         />
                       </div>
+                      <div>
+                        <h2>Usage</h2>
+                        <h3 className="text-sm text-muted-foreground">
+                          /pages/index.tsx
+                        </h3>
+                      </div>
+                      <div className="relative flex flex-col items-center justify-center">
+                        <CodeBlockComponent
+                          code={component.usage({ ...componentProps })}
+                        />
+                      </div>
                     </div>
                   </div>
                   <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)] md:hidden">
@@ -347,11 +335,85 @@ return twMerge(clsx(inputs));
                         /components/ui/{component.slug.toLowerCase()}.tsx
                       </h3>
                     </div>
-
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
                         code={component.sampleCode({ ...componentProps })}
                       />
+                    </div>
+                    <div>
+                      <h2>Usage</h2>
+                      <h3 className="text-sm text-muted-foreground">
+                        /pages/index.tsx
+                      </h3>
+                    </div>
+                    <div className="relative flex flex-col items-center justify-center">
+                      <CodeBlockComponent
+                        code={component.usage({ ...componentProps })}
+                      />
+                    </div>
+                  </div>
+                  {component.links.length > 0 && (
+                    <div className="space-y-4 rounded-md bg-violet-500/10 p-4">
+                      <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
+                        Links
+                      </h1>
+                      <div className="flex flex-col text-muted-foreground">
+                        {component.links.map((link) => (
+                          <a key={link.name} href={link.link}>
+                            {link.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className="space-y-4 rounded-md bg-violet-500/10 p-4">
+                    <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
+                      Properties
+                    </h1>
+                    <div className="overflow-scroll">
+                      {Object.entries(component.properties).map(
+                        ([category, properties]) => (
+                          <table className="w-full">
+                            <thead>
+                              <tr className="m-0 p-0 text-sm">
+                                <th className="py-4 text-start font-medium">
+                                  <h2>{category}</h2>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="border-[0.3px]">
+                              <tr className="m-0 border-b-[0.3px] p-0 text-sm">
+                                <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium">
+                                  Prop name
+                                </th>
+                                <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium ">
+                                  Type
+                                </th>
+                                <th className="px-4 py-3 text-start font-sans font-medium">
+                                  Description
+                                </th>
+                              </tr>
+                              {properties.map((property, index) => (
+                                <tr className="m-0 border-b-[0.3px] p-0 text-sm">
+                                  <td className="border-r-[0.3px] px-4 py-3 font-sans">
+                                    <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
+                                      {property.propertyName}
+                                    </code>
+                                  </td>
+                                  <td className="border-r-[0.3px] px-4 py-3 font-sans md:text-start">
+                                    <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm ">
+                                      {property.propertyType}
+                                    </code>
+                                  </td>
+                                  <td className="px-4 py-3 font-sans">
+                                    {property.propertyDescription}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>
