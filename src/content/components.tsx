@@ -2,6 +2,7 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import CodeBlockComponent from "~/components/codeBlock";
 import ProductComponent from "~/components/ui/ProductComponent";
 import OTPComponent from "~/components/ui/otpComponent";
+import Sonner from "~/components/ui/sonner";
 import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
 import Typewriter from "~/components/ui/typeWriter";
@@ -18,6 +19,10 @@ export interface Component<Props = any> {
   customization: boolean;
   customizations: string[];
   dependencies: string[];
+  maintainer?: string;
+  maintainerlink?: string;
+  links?: {};
+  usage?: (props: Props) => string;
 }
 
 const components: Component[] = [
@@ -81,7 +86,7 @@ export default TextGenerator;`;
     image_alt: "Button Image",
     customization: true,
     customizations: [],
-    dependencies: [],
+    dependencies: ["framer-motion"],
   },
   {
     id: 2,
@@ -140,7 +145,7 @@ export default Typewriter;`;
     image_alt: "Input Image",
     customization: true,
     customizations: [],
-    dependencies: [],
+    dependencies: ["framer-motion"],
   },
   {
     id: 3,
@@ -302,7 +307,7 @@ export default function ProductComponent() {
     image_alt: "Input Image",
     customization: false,
     customizations: [],
-    dependencies: [],
+    dependencies: ["framer-motion"],
   },
   {
     id: 5,
@@ -406,7 +411,7 @@ export default function ButtonComponent() {
     image_alt: "something",
     customization: true,
     customizations: ["Code"],
-    dependencies: ["prismjs", "lucide-react"],
+    dependencies: ["framer-motion", "prismjs", "lucide-react"],
   },
   {
     id: 6,
@@ -511,26 +516,70 @@ export default OTPComponent;`;
     image_alt: "something",
     customization: true,
     customizations: [],
-    dependencies: [],
+    dependencies: ["framer-motion"],
   },
   {
     id: 7,
-    name: "Notification",
-    slug: "notification",
-    description: "A simple OTP (One-Time Password) Interface.",
+    name: "Sonner Component",
+    slug: "toaster",
+    description: "A toast component build ontop of Sonner.",
     sampleCode: (props: { length: number; separatorIndex: number }) => {
-      return ``;
+      return `import { Toaster as Sonner } from "sonner";
+
+type ToasterProps = React.ComponentProps<typeof Sonner>;
+
+const Toaster = ({ ...props }: ToasterProps) => {
+  return (
+    <Sonner
+      toastOptions={{
+        unstyled: true,
+        classNames: {
+          toast: "w-full rounded-md py-[1.2em] px-4 flex items-center",
+          title: "text-white text-sm",
+          description: "text-xs",
+          loader: "bg-blue-400",
+          closeButton:
+            "text-xs px-2 py-2 h-fit border rounded-md border-[rgb(55,55,55)] text-white",
+          cancelButton:
+            "text-xs px-2 py-2 h-fit border rounded-md border-[rgb(55,55,55)] text-white",
+          actionButton:
+            "text-xs px-2 py-2 h-fit border rounded-md border-[rgb(55,55,55)] text-white",
+          success:
+            "px-2 gap-2 text-white border-[0.3px] border-green-400 px-2 gap-2",
+          error:
+            "px-2 gap-2 text-white border-[0.3px] border-red-400 px-2 gap-2",
+          info: "px-2 gap-2 text-white border-[0.3px] border-blue-400 px-2 gap-2",
+          warning:
+            "px-2 gap-2 text-white border-[0.3px] border-red-400 px-2 gap-2",
+          loading: "px-2 gap-2",
+          default: "bg-[rgb(17,18,26)] border-[rgb(55,55,55)] text-white",
+        },
+      }}
+      {...props}
+    />
+  );
+};
+
+export { Toaster };`;
     },
     component: (props: { length: number; separatorIndex: number }) => (
       <>
-        <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center"></div>
+        <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] py-4 text-center">
+          <Sonner />
+        </div>
       </>
     ),
     image: "something.jpg",
     image_alt: "something",
-    customization: true,
+    customization: false,
     customizations: [],
-    dependencies: [],
+    dependencies: ["framer-motion", "sonner"],
+    maintainer: "Emil Kowalski",
+    maintainerlink: "https://emilkowal.ski",
+    links: { docs: "https://sonner.emilkowal.ski/getting-started" },
+    usage: (props: { length: number; separatorIndex: number }) => {
+      return ``;
+    },
   },
 ];
 

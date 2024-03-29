@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import NavbarComponent from "~/components/Navbar";
 import CodeBlockComponent from "~/components/codeBlock";
+import { Toaster } from "~/components/ui/notification/toaster";
 
 import components, { Component } from "~/content/components";
 
@@ -149,13 +150,25 @@ const ComponentPage: React.FC = () => {
               <div className="flex flex-col md:col-span-10 md:col-start-3 md:row-span-full md:row-start-1 md:mr-4 md:overflow-scroll">
                 <div className="h-fit w-full flex-col space-y-4 bg-slate-500/10 p-4 text-white md:h-full md:max-h-[87.7vh] md:overflow-scroll md:rounded-lg">
                   <div className="flex flex-col justify-between md:h-[60vh]">
-                    <div className="space-y-4">
+                    <div className="flex flex-col space-y-4">
                       <h1 className="font-bold leading-none [font-size:_clamp(3.5em,3.5vw,8em)]">
                         {component.name}
                       </h1>
                       <p className="text-muted-foreground">
                         {component.description}
                       </p>
+                      {component.maintainer && (
+                        <div className="flex gap-1">
+                          <p>This component is maintained by</p>
+                          <a
+                            href={component.maintainerlink}
+                            target="_blank"
+                            className="underline"
+                          >
+                            {component.maintainer}
+                          </a>
+                        </div>
+                      )}
                     </div>
 
                     <div className="grid w-full grid-cols-3 gap-4 rounded-md bg-violet-500/10 p-4">
@@ -176,7 +189,7 @@ const ComponentPage: React.FC = () => {
                     Customization
                   </h1>
 
-                  <div className="col-span-full w-full rounded-md bg-violet-500/10 p-4">
+                  <div className="col-span-full w-full rounded-md bg-violet-500/10 p-4 md:hidden">
                     There's no customization options available on mobile.
                   </div>
 
@@ -269,7 +282,7 @@ const ComponentPage: React.FC = () => {
                       <h2>Install dependencies</h2>
                       <div className="relative flex flex-col items-center justify-center">
                         <CodeBlockComponent
-                          code={`npm i framer-motion ${component.dependencies.join(" ")} clsx tailwind-merge`}
+                          code={`npm i ${component.dependencies.join(" ")} clsx tailwind-merge`}
                         />
                       </div>
                       <div>
@@ -309,7 +322,7 @@ export function cn(...inputs: ClassValue[]) {
                     <h2>Install dependencies</h2>
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
-                        code={`npm i framer-motion ${component.dependencies.join(" ")} clsx tailwind-merge`}
+                        code={`npm i ${component.dependencies.join(" ")} clsx tailwind-merge`}
                       />
                     </div>
                     <div>

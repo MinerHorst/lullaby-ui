@@ -1,4 +1,3 @@
-// pages/_document.js
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
@@ -8,7 +7,7 @@ class MyDocument extends Document {
         <Head />
         <body>
           <div id="root">
-            <Main />{" "}
+            <Main />
           </div>
           <NextScript />
         </body>

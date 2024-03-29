@@ -3,16 +3,56 @@ import ReactDOM from "react-dom";
 import { Portal } from "react-portal";
 import React from "react";
 import { X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, color, motion } from "framer-motion";
 
 // Define types for toast
-type ToastType = "warning" | "danger" | "normal" | "info";
+type ToastType = "muted" | "danger" | "normal" | "info";
 
 interface ToastData {
   message: string;
   type: ToastType;
   description?: string;
 }
+
+const getStylesByType = (type: any) => {
+  switch (type) {
+    case "muted":
+      return {
+        backgroundColor: "#CCCCCC",
+        textColor: "#CCCCCC",
+        borderColor: "#CCCCCC",
+        descriptionColor: "#CCCCCC",
+      };
+    case "danger":
+      return {
+        backgroundColor: "#e53935",
+        textColor: "#fff",
+        borderColor: "#FF0000",
+        descriptionColor: "#CCCCCC",
+      };
+    case "normal":
+      return {
+        backgroundColor: "#000",
+        textColor: "#fff",
+        borderColor: "rgb(55,55,55)",
+        descriptionColor: "#CCCCCC",
+      };
+    case "info":
+      return {
+        backgroundColor: "#659952",
+        textColor: "#000",
+        borderColor: "rgb(131,131,139)",
+        descriptionColor: "#CCCCCC",
+      };
+    default:
+      return {
+        backgroundColor: "transparent",
+        textColor: "#333",
+        borderColor: "#333",
+        descriptionColor: "#CCCCCC",
+      };
+  }
+};
 
 const useToast = (): [(toast: ToastData) => void] => {
   const [toastData, setToastData] = useState<ToastData | null>(null);
@@ -22,21 +62,31 @@ const useToast = (): [(toast: ToastData) => void] => {
       const root = document.getElementById("toast-root")!;
       const timer = setTimeout(() => {
         setToastData(null);
-      }, 3000);
+      }, 3000000);
+
+      const styles = getStylesByType(toastData.type);
 
       ReactDOM.render(
         <Portal node={root}>
           <AnimatePresence>
             <motion.div
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={`absolute right-0 top-0 z-[9999] m-2 flex w-[300px] rounded-md border p-2 text-white bg-${toastData.type}`}
+              className={`absolute right-0 top-0 z-[9999] m-2 flex w-[300px] rounded-md border-[0.3px] p-2`}
+              style={{
+                backgroundColor: styles.backgroundColor,
+                color: styles.textColor,
+                borderColor: styles.borderColor,
+              }}
             >
               <div>
-                <div>{toastData.message}</div>
+                <div className="text-sm font-medium">{toastData.message}</div>
                 {toastData.description && (
-                  <div className="text-sm text-neutral-500">
+                  <div
+                    className="text-sm"
+                    style={{ color: styles.descriptionColor }}
+                  >
                     {toastData.description}
                   </div>
                 )}

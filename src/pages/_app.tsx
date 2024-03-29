@@ -8,6 +8,7 @@ import "../styles/prism-vsc-dark.css";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import { Toaster } from "~/components/ui/notification/toaster";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <main className={`font-sans ${inter.variable}`}>
         <Component {...pageProps} />
+        <Toaster />
       </main>
     </SessionProvider>
   );
