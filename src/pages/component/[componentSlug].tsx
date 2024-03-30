@@ -262,22 +262,7 @@ const ComponentPage: React.FC = () => {
                           code={`npm i ${component.dependencies.join(" ")} clsx tailwind-merge`}
                         />
                       </div>
-                      <div>
-                        <h2>Add utils file</h2>
-                        <h3 className="text-sm text-muted-foreground">
-                          utils/cn.ts
-                        </h3>
-                      </div>
-                      <div className="relative flex flex-col items-center justify-center">
-                        <CodeBlockComponent
-                          code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-  
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}`}
-                        />
-                      </div>
+
                       <div>
                         <h2>Copy the Source Code</h2>
                         <h3 className="text-sm text-muted-foreground">
@@ -310,25 +295,10 @@ export function cn(...inputs: ClassValue[]) {
                     <h2>Install dependencies</h2>
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
-                        code={`npm i ${component.dependencies.join(" ")} clsx tailwind-merge`}
+                        code={`npm i ${component.dependencies.join(" ")}`}
                       />
                     </div>
-                    <div>
-                      <h2>Add utils file</h2>
-                      <h3 className="text-sm text-muted-foreground">
-                        utils/cn.ts
-                      </h3>
-                    </div>
-                    <div className="relative flex flex-col items-center justify-center">
-                      <CodeBlockComponent
-                        code={`import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
-return twMerge(clsx(inputs));
-}`}
-                      />
-                    </div>
                     <div>
                       <h2>Copy the Source Code</h2>
                       <h3 className="text-sm text-muted-foreground">

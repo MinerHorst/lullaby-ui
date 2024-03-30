@@ -8,14 +8,13 @@ const Toaster = ({ ...props }: ToasterProps) => {
       visibleToasts={6}
       expand={true}
       toastOptions={{
-        unstyled: true,
         classNames: {
           toast: "w-full rounded-md py-[1.2em] px-4 flex items-center", //general styling
           title: "text-white text-sm",
           description: "text-xs",
           loader: "bg-blue-400",
           closeButton:
-            "text-xs px-2 py-2 h-fit border rounded-md border-[rgb(55,55,55)] text-white",
+            "text-xs p-1 h-fit w-fit border border-[rgb(55,55,55)] text-white rounded-full bg-[rgb(17,18,27)] hover:bg-[rgb(17,18,27)] hover:text-black",
           cancelButton:
             "text-xs px-2 py-2 h-fit border rounded-md border-[rgb(55,55,55)] text-white",
           actionButton:

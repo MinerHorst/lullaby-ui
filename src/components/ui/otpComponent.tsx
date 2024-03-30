@@ -63,7 +63,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
                 );
               }
             }}
-            className="aspect-square items-center rounded-md border border-neutral-400 bg-transparent text-center text-white"
+            className="aspect-square items-center rounded-md border border-neutral-400 bg-transparent text-center text-white focus-within:placeholder-transparent focus-visible:outline-none focus-visible:ring-[1px] focus-visible:ring-[#d4d4d8] disabled:cursor-not-allowed disabled:opacity-50"
             style={{ width: "30px", marginRight: "5px" }}
           />
           {index === separatorIndex - 1 && index !== length - 1 && (

@@ -1,11 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { ArrowRight, ArrowUpRightFromSquare } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const ColorChangingComponent = ({ color }: { color: string }) => {
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
   const [showImage, setShowImage] = useState(false);
-  const mouseRef = useRef(null);
 
   const cursorRef = useRef<HTMLDivElement>(null);
 

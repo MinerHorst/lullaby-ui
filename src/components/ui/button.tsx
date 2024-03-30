@@ -1,9 +1,8 @@
 import React from "react";
-
 import { ArrowLeft, LogIn, LogOut, Upload } from "lucide-react";
 
-interface ButtonProps {
-  type: "signup" | "signin" | "logout" | "back" | "upload" | "custom";
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  display: "signup" | "signin" | "logout" | "back" | "upload" | "custom";
   action?: () => void;
   customIcon?: React.ReactNode;
   customText?: string;
@@ -11,16 +10,17 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  type,
+  display,
   action,
   customIcon,
   customText,
   iconPosition = "left",
+  ...props
 }) => {
   let buttonText = "";
   let icon = null;
 
-  switch (type) {
+  switch (display) {
     case "signup":
       buttonText = "Sign Up";
       icon = <LogIn size={16} />;
@@ -57,7 +57,8 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className="flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-2 text-black"
+      {...props}
+      className="flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-2 text-black disabled:cursor-not-allowed disabled:opacity-50"
       onClick={action}
     >
       {iconPosition === "left" && icon}

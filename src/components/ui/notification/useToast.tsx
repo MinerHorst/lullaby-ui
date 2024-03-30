@@ -10,12 +10,12 @@ type ToastType = "muted" | "danger" | "normal" | "info";
 
 interface ToastData {
   message: string;
-  type: ToastType;
+  type: ToastType; 
   description?: string;
 }
 
 const getStylesByType = (type: any) => {
-  switch (type) {
+  switch (type) {  
     case "muted":
       return {
         backgroundColor: "#CCCCCC",

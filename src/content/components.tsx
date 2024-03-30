@@ -1,15 +1,18 @@
-import { Component, Heart } from "lucide-react";
-import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import React from "react";
+import { Component } from "lucide-react";
 import { toast } from "sonner";
 import CodeBlockComponent from "~/components/codeBlock";
 import ProductComponent from "~/components/ui/ProductComponent";
 import Button from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import OTPComponent from "~/components/ui/otpComponent";
 import SocialButton from "~/components/ui/socialButton";
 import Sonner from "~/components/ui/sonner";
 import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
+import { TextArea } from "~/components/ui/textarea";
 import Typewriter from "~/components/ui/typeWriter";
+import DrawerComponent from "~/components/ui/drawer";
 
 export interface ComponentLink {
   name: string;
@@ -28,7 +31,7 @@ export interface Component<Props = any> {
   slug: string;
   description: string;
   sampleCode: (props: Props) => string;
-  component: (props: Props) => React.ReactNode; // Updated signature to accept any props
+  component: (props: Props) => React.ReactNode;
   image: string;
   image_alt: string;
   customization: boolean;
@@ -46,7 +49,7 @@ export interface Component<Props = any> {
 const components: Component[] = [
   {
     id: 1,
-    name: "Text Generate Effect",
+    name: "Text Generate",
     slug: "text-generator",
     description: "The popular text generating effect from ChatGPT",
     sampleCode: (props: { color: string; text: string }) => {
@@ -138,7 +141,7 @@ export default TextGenerator;`;
   },
   {
     id: 2,
-    name: "Typewriter Effect",
+    name: "Typewriter",
     slug: "typewriter",
     description: "A text input component.",
     sampleCode: (props: { color: string; text: string }) => {
@@ -182,7 +185,7 @@ export default Typewriter;`;
       <>
         <div className="relative flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
           <Typewriter
-            text="Hello, World! This is a Typewriter Effect."
+            text="Hello, World! This is a Typewriter."
             delay={0.1}
             color={color}
           />
@@ -227,9 +230,9 @@ export default Typewriter;`;
   },
   {
     id: 3,
-    name: "Textpulse Effect",
+    name: "Textpulse",
     slug: "textpulse",
-    description: "Text-Effect that simulates a pulse from left to right.",
+    description: "Text that simulates a pulse from left to right.",
     sampleCode: (props: { color: string; text: string; delay: number }) => {
       return `import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -317,7 +320,7 @@ export default TextPulse;`;
   },
   {
     id: 4,
-    name: "Product Cell Component",
+    name: "Product Cell",
     slug: "productcell",
     description: "A product cell from apples website.",
     sampleCode: (props: { color: string; text: string }) => {
@@ -449,7 +452,7 @@ export default function ProductComponent() {
   },
   {
     id: 5,
-    name: "Codeblock Component",
+    name: "Codeblock",
     slug: "codeblock",
     description: "A simple Code-Block Component based on the Prism-js Library.",
     sampleCode: (props: { color: string; text: string }) => {
@@ -572,7 +575,7 @@ export default function ButtonComponent() {
   },
   {
     id: 6,
-    name: "OTP Component",
+    name: "OTP",
     slug: "otp",
     description: "A simple OTP (One-Time Password) Interface.",
     sampleCode: (props: { length: number; separatorIndex: number }) => {
@@ -590,7 +593,7 @@ interface OTPComponentProps {
   separatorIndex: number;
 }
 
-const OTPComponent: React.FC<OTPComponentProps> = ({
+const OTP: React.FC<OTPComponentProps> = ({
   length,
   separatorIndex,
 }) => {
@@ -655,7 +658,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   );
 };
 
-export default OTPComponent;`;
+export default OTP;`;
     },
     component: (props: { length: number; separatorIndex: number }) => (
       <>
@@ -695,7 +698,7 @@ export default OTPComponent;`;
   },
   {
     id: 7,
-    name: "Sonner Component",
+    name: "Sonner",
     slug: "sonner",
     description: "A toast component build ontop of Sonner.",
     sampleCode: (props: { length: number; separatorIndex: number }) => {
@@ -997,8 +1000,8 @@ export default SocialButton;`;
       return `import React from "react";
 import { ArrowLeft, LogIn, LogOut, Upload } from "lucide-react";
 
-interface ButtonProps {
-  type: "signup" | "signin" | "logout" | "back" | "upload" | "custom";
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  display: "signup" | "signin" | "logout" | "back" | "upload" | "custom";
   action?: () => void;
   customIcon?: React.ReactNode;
   customText?: string;
@@ -1006,16 +1009,17 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  type,
+  display,
   action,
   customIcon,
   customText,
   iconPosition = "left",
+  ...props
 }) => {
   let buttonText = "";
   let icon = null;
 
-  switch (type) {
+  switch (display) {
     case "signup":
       buttonText = "Sign Up";
       icon = <LogIn size={16} />;
@@ -1052,6 +1056,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      {...props}
       className="flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-2 text-black"
       onClick={action}
     >
@@ -1068,8 +1073,10 @@ export default Button;`;
       <>
         <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] py-4 text-center">
           <Button
-            type="upload"
-            action={() => toast.success("The file was uploaded.")}
+            display="upload"
+            action={() =>
+              toast.success("The file was uploaded.", { closeButton: true })
+            }
             iconPosition="left"
           />
         </div>
@@ -1091,10 +1098,216 @@ const handleSignUp = () => {
 };
 
 <Button
-  type="signup"
+  display="signup"
   iconPosition="right"
   action={handleSingUp}
 />`;
+    },
+    properties: {
+      Button: [
+        {
+          propertyName: "display",
+          propertyType: "string",
+          propertyDescription: `"signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
+        },
+        {
+          propertyName: "action",
+          propertyType: "void",
+          propertyDescription: `The action that should be triggered once the button is pressed.`,
+        },
+        {
+          propertyName: "iconPosition",
+          propertyType: "string",
+          propertyDescription: `iconPosition="left" (default) other: "right"`,
+        },
+        {
+          propertyName: "customIcon",
+          propertyType: "React.ReactNode",
+          propertyDescription: `customIcon={<Heart />} Be sure to specify type="custom"`,
+        },
+        {
+          propertyName: "customText",
+          propertyType: "string",
+          propertyDescription: `customText="Custom Button" Be sure to specify type="custom"`,
+        },
+      ],
+    },
+  },
+  {
+    id: 10,
+    name: "Input",
+    slug: "input",
+    description:
+      "Displays an input field, that works just like an HTML-Input but looks nicer.",
+    sampleCode: () => {
+      return `import React from "react";
+
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ ...props }) => {
+  return (
+    <input
+      {...props}
+      className="flex h-10 w-full rounded-md border border-neutral-400 bg-transparent px-3 py-2 text-sm placeholder:text-neutral-400 focus-within:placeholder-transparent focus-visible:outline-none focus-visible:ring-[0.5px] focus-visible:ring-[#d4d4d8] disabled:cursor-not-allowed disabled:opacity-50"
+    />
+  );
+});
+
+export { Input };`;
+    },
+    component: () => (
+      <>
+        <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
+          <Input type="text" placeholder="Input Component" />
+        </div>
+      </>
+    ),
+    image: "something.jpg",
+    image_alt: "something",
+    customization: false,
+    customizations: [],
+    dependencies: ["tailwindcss", "react"],
+    maintainer: "",
+    maintainerlink: "",
+    links: [],
+    usage: () => {
+      return `import Input from "~/components/ui/input";
+
+<Input type="text" placeholder="Input Component" />`;
+    },
+    properties: {
+      Button: [
+        {
+          propertyName: "type",
+          propertyType: "string",
+          propertyDescription: `The type of the Button: "signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
+        },
+        {
+          propertyName: "action",
+          propertyType: "void",
+          propertyDescription: `The action that should be triggered once the button is pressed.`,
+        },
+        {
+          propertyName: "iconPosition",
+          propertyType: "string",
+          propertyDescription: `iconPosition="left" (default) other: "right"`,
+        },
+        {
+          propertyName: "customIcon",
+          propertyType: "React.ReactNode",
+          propertyDescription: `customIcon={<Heart />} Be sure to specify type="custom"`,
+        },
+        {
+          propertyName: "customText",
+          propertyType: "string",
+          propertyDescription: `customText="Custom Button" Be sure to specify type="custom"`,
+        },
+      ],
+    },
+  },
+  {
+    id: 11,
+    name: "Textarea",
+    slug: "textarea",
+    description:
+      "Displays a Textarea, that works just like an HTML-Textarea but looks nicer.",
+    sampleCode: () => {
+      return `import React from "react";
+
+export interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  ({ ...props }) => {
+    return (
+      <textarea
+        {...props}
+        className="flex h-10 min-h-[80px] w-full rounded-md border-[0.5px] border-neutral-400 bg-transparent px-3 py-2 text-sm placeholder:text-neutral-400 focus-within:placeholder-transparent focus-visible:outline-none focus-visible:ring-[0.5px] focus-visible:ring-[#d4d4d8] disabled:cursor-not-allowed disabled:opacity-50"
+      />
+    );
+  },
+);
+
+export { TextArea };`;
+    },
+    component: () => (
+      <>
+        <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
+          <TextArea placeholder="Textarea Component" />
+        </div>
+      </>
+    ),
+    image: "something.jpg",
+    image_alt: "something",
+    customization: false,
+    customizations: [],
+    dependencies: ["tailwindcss", "react"],
+    maintainer: "",
+    maintainerlink: "",
+    links: [],
+    usage: () => {
+      return `import TextArea from "~/components/ui/textarea";
+
+<TextArea placeholder="Textarea Component" />`;
+    },
+    properties: {
+      Button: [
+        {
+          propertyName: "type",
+          propertyType: "string",
+          propertyDescription: `The type of the Button: "signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
+        },
+        {
+          propertyName: "action",
+          propertyType: "void",
+          propertyDescription: `The action that should be triggered once the button is pressed.`,
+        },
+        {
+          propertyName: "iconPosition",
+          propertyType: "string",
+          propertyDescription: `iconPosition="left" (default) other: "right"`,
+        },
+        {
+          propertyName: "customIcon",
+          propertyType: "React.ReactNode",
+          propertyDescription: `customIcon={<Heart />} Be sure to specify type="custom"`,
+        },
+        {
+          propertyName: "customText",
+          propertyType: "string",
+          propertyDescription: `customText="Custom Button" Be sure to specify type="custom"`,
+        },
+      ],
+    },
+  },
+  {
+    id: 12,
+    name: "Drawer",
+    slug: "drawer",
+    description: "TBD",
+    sampleCode: () => {
+      return ``;
+    },
+    component: () => (
+      <>
+        <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
+          <DrawerComponent />
+        </div>
+      </>
+    ),
+    image: "something.jpg",
+    image_alt: "something",
+    customization: false,
+    customizations: [],
+    dependencies: ["tailwindcss", "react"],
+    maintainer: "",
+    maintainerlink: "",
+    links: [],
+    usage: () => {
+      return `import TextArea from "~/components/ui/textarea";
+
+<TextArea placeholder="Textarea Component" />`;
     },
     properties: {
       Button: [

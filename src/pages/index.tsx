@@ -9,7 +9,7 @@ import CodeBlockComponent from "~/components/codeBlock";
 
 import { hsvaToHex } from "@uiw/color-convert";
 import ExampleButtonComponent from "~/components/index/examplebutton";
-import ColorChangingComponent from "~/components/ui/ColorChangingComponent";
+import ColorChangingComponent from "~/components/index/ColorChangingComponent";
 import Link from "next/link";
 
 export default function Home() {
