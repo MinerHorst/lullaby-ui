@@ -401,12 +401,14 @@ return twMerge(clsx(inputs));
                                     </code>
                                   </td>
                                   <td className="border-r-[0.3px] px-4 py-3 font-sans md:text-start">
-                                    <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm ">
+                                    <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
                                       {property.propertyType}
                                     </code>
                                   </td>
                                   <td className="px-4 py-3 font-sans">
-                                    {property.propertyDescription}
+                                    <p className="relative w-fit rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
+                                      {property.propertyDescription}
+                                    </p>
                                   </td>
                                 </tr>
                               ))}

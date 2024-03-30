@@ -15,10 +15,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex min-h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c]">
+      <main className="flex h-full w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c]">
         <NavbarComponent />
-        <div className="relative z-[50] grid grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="col-span-1 flex flex-col justify-between space-y-4 rounded-3xl bg-slate-500/10 p-4 text-white md:h-[80vh] lg:h-full">
+        <div className="relative z-[50] grid grid-cols-1 gap-4 px-4 pb-4 md:h-[91vh] md:grid-cols-2 lg:grid-cols-4">
+          <div className="col-span-1 flex flex-col justify-between space-y-4 rounded-3xl bg-slate-500/10 text-white md:h-[80vh] lg:h-full">
             <div className="flex flex-col space-y-8">
               <p className="text-sm font-bold">Existing Components</p>
               <div className="flex flex-col justify-between space-y-4">
@@ -27,7 +27,7 @@ export default function Home() {
                     Free
                   </h1>
                 </div>
-                <p>
+                <p className="h-[15vh]">
                   All Exisiting Components free for commercial and personal use
                   under the MIT License.
                 </p>
@@ -66,7 +66,7 @@ export default function Home() {
                     $500
                   </h1>
                 </div>
-                <p>
+                <p className="h-[15vh]">
                   A custom tailored component that will easily integrate into
                   your exisitng system or design.
                 </p>
@@ -110,7 +110,7 @@ export default function Home() {
                     $1000
                   </h1>
                 </div>
-                <p>
+                <p className="h-[15vh]">
                   3 custom made components for a base price of $1000 and $400
                   for each additional component.
                 </p>
@@ -140,7 +140,7 @@ export default function Home() {
                   </div>
 
                   <p className="text-muted-foreground">
-                    *Delivery time varies with component quantity.
+                    *Delivery time varies with quantity.
                   </p>
                 </li>
               </ul>
@@ -164,10 +164,7 @@ export default function Home() {
                     $5000
                   </h1>
                 </div>
-                <p>
-                  3 custom made components for a base price of $1000 and $400
-                  for each additional component.
-                </p>
+                <p className="h-[15vh]">Fully custom multi page website.</p>
               </div>
 
               <ul className="flex flex-col space-y-4">
@@ -182,6 +179,10 @@ export default function Home() {
                 <li className="flex items-center gap-2">
                   <CircleCheck size={16} />
                   <p>Design + Development</p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CircleCheck size={16} />
+                  <p>Motion Design</p>
                 </li>
                 <li className="flex items-center gap-2">
                   <CircleCheck size={16} />
