@@ -26,12 +26,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <AnimatePresence>
           <Component {...pageProps} />
           <Toaster />
-          <motion.div
-            initial={{ y: "+100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "+100%" }}
-            id="drawer-root"
-          ></motion.div>
+          <motion.div id="drawer-root"></motion.div>
         </AnimatePresence>
       </main>
     </SessionProvider>

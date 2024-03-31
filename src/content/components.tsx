@@ -13,6 +13,7 @@ import TextPulse from "~/components/ui/textPulse";
 import { TextArea } from "~/components/ui/textarea";
 import Typewriter from "~/components/ui/typeWriter";
 import DrawerComponent from "~/components/ui/drawer";
+import Rating from "~/components/ui/rating";
 
 export interface ComponentLink {
   name: string;
@@ -1074,7 +1075,7 @@ export default Button;`;
         <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] py-4 text-center">
           <Button
             display="upload"
-            action={() =>
+            onClick={() =>
               toast.success("The file was uploaded.", { closeButton: true })
             }
             iconPosition="left"
@@ -1111,7 +1112,7 @@ const handleSignUp = () => {
           propertyDescription: `"signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
         },
         {
-          propertyName: "action",
+          propertyName: "onClick",
           propertyType: "void",
           propertyDescription: `The action that should be triggered once the button is pressed.`,
         },
@@ -1293,6 +1294,64 @@ export { TextArea };`;
       <>
         <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
           <DrawerComponent />
+        </div>
+      </>
+    ),
+    image: "something.jpg",
+    image_alt: "something",
+    customization: false,
+    customizations: [],
+    dependencies: ["tailwindcss", "react"],
+    maintainer: "",
+    maintainerlink: "",
+    links: [],
+    usage: () => {
+      return `import TextArea from "~/components/ui/textarea";
+
+<TextArea placeholder="Textarea Component" />`;
+    },
+    properties: {
+      Button: [
+        {
+          propertyName: "type",
+          propertyType: "string",
+          propertyDescription: `The type of the Button: "signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
+        },
+        {
+          propertyName: "action",
+          propertyType: "void",
+          propertyDescription: `The action that should be triggered once the button is pressed.`,
+        },
+        {
+          propertyName: "iconPosition",
+          propertyType: "string",
+          propertyDescription: `iconPosition="left" (default) other: "right"`,
+        },
+        {
+          propertyName: "customIcon",
+          propertyType: "React.ReactNode",
+          propertyDescription: `customIcon={<Heart />} Be sure to specify type="custom"`,
+        },
+        {
+          propertyName: "customText",
+          propertyType: "string",
+          propertyDescription: `customText="Custom Button" Be sure to specify type="custom"`,
+        },
+      ],
+    },
+  },
+  {
+    id: 12,
+    name: "Rating",
+    slug: "rating",
+    description: "TBD",
+    sampleCode: () => {
+      return ``;
+    },
+    component: () => (
+      <>
+        <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
+          <Rating />
         </div>
       </>
     ),

@@ -126,7 +126,7 @@ const ComponentPage: React.FC = () => {
 
               <div className="flex flex-col md:col-span-10 md:col-start-3 md:row-span-full md:row-start-1 md:mr-4 md:overflow-scroll">
                 <div className="h-fit w-full flex-col space-y-4 bg-slate-500/10 p-4 text-white md:h-full md:max-h-[87.7vh] md:overflow-scroll md:rounded-lg">
-                  <div className="flex flex-col justify-between md:h-[60vh]">
+                  <div className="flex flex-col justify-between space-y-4">
                     <div className="flex flex-col space-y-4">
                       <h1 className="font-bold leading-none [font-size:_clamp(3.5em,3.5vw,8em)]">
                         {component.name}
@@ -148,14 +148,14 @@ const ComponentPage: React.FC = () => {
                       )}
                     </div>
 
-                    <div className="grid w-full grid-cols-3 gap-4 rounded-md bg-violet-500/10 p-4">
+                    <div className="grid h-fit w-full grid-cols-3 gap-4 rounded-md bg-violet-500/10 p-4">
                       <div
                         key={key}
-                        className="col-span-full aspect-square h-full w-full rounded-md md:col-span-1"
+                        className="col-span-full aspect-[1/0.5] h-full w-full rounded-md"
                       >
                         {component.component({ ...componentProps })}
                       </div>
-                      <div className="relative col-span-full flex aspect-[1/0.492] h-full w-full flex-col items-center justify-start md:col-span-2">
+                      <div className="relative col-span-full flex h-full w-full flex-col items-center justify-start">
                         <CodeBlockComponent
                           code={component.sampleCode({ ...componentProps })}
                         />

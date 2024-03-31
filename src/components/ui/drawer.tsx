@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import useDrawer from "./drawer/useDrawer";
+import Button from "./button";
 
 export default function DrawerComponent() {
   const [showDrawer] = useDrawer();
 
-  const handleOpenDrawer = () => {
-    showDrawer({
+  const openDrawer = () => {
+    const drawerContent = {
       content: (
-        <>
-          <div className="">Hello World!</div>
-        </>
+        <div>
+          <h2>Drawer Content</h2>
+          <p>This is the content of the drawer.</p>
+        </div>
       ),
-    });
+    };
+    showDrawer(drawerContent);
   };
 
   return (
-    <div>
-      <button onClick={handleOpenDrawer}>Open Drawer</button>
-    </div>
+    <Button display="custom" customText="Open Drawer" onClick={openDrawer}>
+      Open Drawer
+    </Button>
   );
 }
