@@ -15,7 +15,8 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   length = 6,
   separatorIndex = 3,
 }) => {
-  const [otp, setOTP] = useState<string[]>(Array(length).fill(""));
+  const [otp, setOTP] = useState<string[]>(Array(length).fill("")); 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const otpInputs = useRef<HTMLInputElement[]>(Array(length).fill(undefined));
 
   console.log(length);
@@ -47,7 +48,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   return (
     <div>
       {otp.map((digit, index) => (
-        <React.Fragment>
+        <React.Fragment key={index}>
           <input
             key={index}
             type="text"

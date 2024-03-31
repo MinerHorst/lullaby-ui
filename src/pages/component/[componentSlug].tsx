@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ChangeEvent, useState } from "react";
-import NavbarComponent from "../../components/Navbar";
+import NavbarComponent from "~/components/Navbar";
 import CodeBlockComponent from "~/components/codeBlock";
 
 import components, { Component } from "~/content/components";
@@ -21,10 +21,9 @@ const ComponentPage: React.FC = () => {
   const remountComponent = () => {
     setKey((prevKey) => prevKey + 1);
   };
-
-  type ComponentProps = {
-    [key: string]: any;
-  };
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type ComponentProps = Record<string, any>;
 
   const router = useRouter();
   const { componentSlug } = router.query;
@@ -153,11 +152,25 @@ const ComponentPage: React.FC = () => {
                         key={key}
                         className="col-span-full aspect-[1/0.5] h-full w-full rounded-md"
                       >
-                        {component.component({ ...componentProps })}
+                        {component.component({
+                          color: "",
+                          text: "",
+                          delay: 0,
+                          Code: "",
+                          length: 0,
+                          separatorIndex: 0,
+                        })}
                       </div>
                       <div className="relative col-span-full flex h-full w-full flex-col items-center justify-start">
                         <CodeBlockComponent
-                          code={component.sampleCode({ ...componentProps })}
+                          code={component.sampleCode({
+                            color: "",
+                            text: "",
+                            delay: 0,
+                            Code: "",
+                            length: 0,
+                            separatorIndex: 0,
+                          })}
                         />
                       </div>
                     </div>
@@ -167,7 +180,7 @@ const ComponentPage: React.FC = () => {
                   </h1>
 
                   <div className="col-span-full w-full rounded-md bg-violet-500/10 p-4 md:hidden">
-                    There's no customization options available on mobile.
+                    There&apos;s no customization options available on mobile.
                   </div>
 
                   <div className="hidden h-fit grid-cols-3 gap-4 md:grid">
@@ -248,7 +261,7 @@ const ComponentPage: React.FC = () => {
                     ) : (
                       <div className="col-span-full w-full rounded-md bg-violet-500/10 p-4">
                         <p className="rounded-md bg-[rgb(17,18,26)] p-4">
-                          There's no customization for this component.
+                          There&apos;s no customization for this component.
                         </p>
                       </div>
                     )}
@@ -272,7 +285,14 @@ const ComponentPage: React.FC = () => {
 
                       <div className="relative flex flex-col items-center justify-center">
                         <CodeBlockComponent
-                          code={component.sampleCode({ ...componentProps })}
+                          code={component.sampleCode({
+                            color: "",
+                            text: "",
+                            delay: 0,
+                            Code: "",
+                            length: 0,
+                            separatorIndex: 0,
+                          })}
                         />
                       </div>
                       <div>
@@ -283,7 +303,14 @@ const ComponentPage: React.FC = () => {
                       </div>
                       <div className="relative flex flex-col items-center justify-center">
                         <CodeBlockComponent
-                          code={component.usage({ ...componentProps })}
+                          code={component.usage({
+                            color: "",
+                            text: "",
+                            delay: 0,
+                            Code: "",
+                            length: 0,
+                            separatorIndex: 0,
+                          })}
                         />
                       </div>
                     </div>
@@ -307,7 +334,14 @@ const ComponentPage: React.FC = () => {
                     </div>
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
-                        code={component.sampleCode({ ...componentProps })}
+                        code={component.sampleCode({
+                          color: "",
+                          text: "",
+                          delay: 0,
+                          Code: "",
+                          length: 0,
+                          separatorIndex: 0,
+                        })}
                       />
                     </div>
                     <div>
@@ -318,7 +352,14 @@ const ComponentPage: React.FC = () => {
                     </div>
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
-                        code={component.usage({ ...componentProps })}
+                        code={component.usage({
+                          color: "",
+                          text: "",
+                          delay: 0,
+                          Code: "",
+                          length: 0,
+                          separatorIndex: 0,
+                        })}
                       />
                     </div>
                   </div>
@@ -343,7 +384,7 @@ const ComponentPage: React.FC = () => {
                     <div className="overflow-scroll">
                       {Object.entries(component.properties).map(
                         ([category, properties]) => (
-                          <table className="w-full">
+                          <table key={category} className="w-full">
                             <thead>
                               <tr className="m-0 p-0 text-sm">
                                 <th className="py-4 text-start font-medium">
@@ -364,7 +405,10 @@ const ComponentPage: React.FC = () => {
                                 </th>
                               </tr>
                               {properties.map((property, index) => (
-                                <tr className="m-0 border-b-[0.3px] p-0 text-sm">
+                                <tr
+                                  key={index}
+                                  className="m-0 border-b-[0.3px] p-0 text-sm"
+                                >
                                   <td className="border-r-[0.3px] px-4 py-3 font-sans">
                                     <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
                                       {property.propertyName}

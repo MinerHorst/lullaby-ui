@@ -62,12 +62,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={onClick}
         className="flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-2 text-black disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {(iconPosition === "left" && icon) || customIcon}
+        {(iconPosition === "left" && icon) ?? customIcon}
         <span>{buttonText || customText}</span>
-        {(iconPosition === "right" && icon) || customIcon}
+        {(iconPosition === "right" && icon) ?? customIcon}
       </button>
     );
   },
 );
+
+Button.displayName = "Button";
 
 export default Button;

@@ -1,5 +1,6 @@
 import React from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
@@ -13,5 +14,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     );
   },
 );
+
+TextArea.displayName = "TextArea";
 
 export { TextArea };

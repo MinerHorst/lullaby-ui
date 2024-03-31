@@ -4,6 +4,7 @@ import React from "react";
 import { X } from "lucide-react";
 import {
   AnimatePresence,
+  AnimationControls,
   easeInOut,
   easeOut,
   motion,
@@ -23,17 +24,19 @@ const DrawerComponent = ({
 }: {
   drawerData: DrawerData;
   onClose: () => void;
-  drawer: any;
-  background: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  drawer: AnimationControls;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  background: AnimationControls;
 }) => {
   useEffect(() => {
     if (drawerData) {
-      drawer.start({
+      void drawer.start({
         y: 0,
         scale: 1,
         transition: { duration: 0.75, delay: 0.2, ease: easeOut },
       });
-      background.start({
+      void background.start({
         opacity: 1,
         transition: { duration: 0.2, delay: 0.8 },
       });
@@ -46,11 +49,13 @@ const DrawerComponent = ({
         <motion.div
           key="drawer"
           initial={{ y: "+100%", scale: 0.6 }}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           animate={drawer}
           className={`absolute left-0 top-0 z-[9999] flex h-screen w-screen items-center justify-center overflow-hidden rounded-md text-white`}
         >
           <motion.div
             initial={{ opacity: 0 }}
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             animate={background}
             className="absolute top-0 h-screen w-screen backdrop-blur-xl"
           >
@@ -89,9 +94,9 @@ const useDrawer = (): [(drawer: DrawerData) => void, () => void] => {
   };
 
   const onClose = () => {
-    background.start({ opacity: 0, transition: { duration: 0.2 } });
+    void background.start({ opacity: 0, transition: { duration: 0.2 } });
 
-    drawer.start({
+    void drawer.start({
       y: "+100%",
       scale: 0.6,
       transition: { duration: 0.75, delay: 0.2, ease: easeInOut },
@@ -102,6 +107,7 @@ const useDrawer = (): [(drawer: DrawerData) => void, () => void] => {
     if (drawerData !== null) {
       const root = document.getElementById("drawer-root");
       if (root) {
+        // eslint-disable-next-line react/no-deprecated
         ReactDOM.render(
           <DrawerComponent
             drawerData={drawerData}

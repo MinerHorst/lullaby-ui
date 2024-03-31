@@ -61,7 +61,7 @@ export default function Home() {
             </div>
 
             {components.map((component, index) => (
-              <Link href={`/component/${component.slug}`}>
+              <Link key={component.id} href={`/component/${component.slug}`}>
                 <motion.div
                   key={component.id}
                   initial={{ opacity: 0, y: -4 }}

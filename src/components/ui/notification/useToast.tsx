@@ -10,12 +10,12 @@ type ToastType = "muted" | "danger" | "normal" | "info";
 
 interface ToastData {
   message: string;
-  type: ToastType; 
+  type: ToastType;
   description?: string;
 }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getStylesByType = (type: any) => {
-  switch (type) {  
+  switch (type) {
     case "muted":
       return {
         backgroundColor: "#CCCCCC",
@@ -65,7 +65,7 @@ const useToast = (): [(toast: ToastData) => void] => {
       }, 3000000);
 
       const styles = getStylesByType(toastData.type);
-
+      // eslint-disable-next-line react/no-deprecated
       ReactDOM.render(
         <Portal node={root}>
           <AnimatePresence>
@@ -105,6 +105,7 @@ const useToast = (): [(toast: ToastData) => void] => {
 
       return () => {
         clearTimeout(timer);
+        // eslint-disable-next-line react/no-deprecated
         ReactDOM.unmountComponentAtNode(root);
       };
     }

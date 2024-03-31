@@ -2,7 +2,7 @@ import Image from "next/image";
 import logo_black from "../../public/logo-black.png";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { Command } from "cmdk";
 import { Component, File, Menu, Search, X } from "lucide-react";
 import components from "~/content/components";
@@ -11,16 +11,17 @@ export default function NavbarComponent() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const down = (e: any) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+    const down = (e: KeyboardEvent) => {
+      if ((e.key === "k" && e.metaKey) || (e.key === "k" && e.ctrlKey)) {
         e.preventDefault();
         setIsOpen((isOpen) => !isOpen);
         console.log("Key set href", isOpen);
       }
     };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener("keydown", down as unknown as EventListener);
+    return () =>
+      document.removeEventListener("keydown", down as unknown as EventListener);
   }, []);
 
   return (
@@ -36,7 +37,10 @@ export default function NavbarComponent() {
                     placeholder="Search..."
                     className="flex w-full flex-row items-center justify-between border-transparent bg-transparent shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[rgb(131,131,138)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50"
                   />
-                  <button onClick={(e: any) => setIsOpen(!isOpen)}>
+                  {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  }
+                  <button onClick={(e) => setIsOpen(!isOpen)}>
                     <X size={16} />
                   </button>
                 </div>

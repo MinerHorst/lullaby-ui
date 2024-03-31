@@ -25,13 +25,24 @@ export interface Property {
   propertyDescription: string;
 }
 
-export interface Component<Props = any> {
+interface ComponentProps {
+  color: string;
+  text: string;
+  delay: number;
+  Code: string;
+  length: number;
+  separatorIndex: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any; // Allow additional properties
+}
+
+export interface Component<Props = ComponentProps> {
   id: number;
   name: string;
   slug: string;
   description: string;
   sampleCode: (props: Props) => string;
-  component: (props: Props) => React.ReactNode;
+  component: (props: Props) => React.JSX.Element;
   image: string;
   image_alt: string;
   customization: boolean;
@@ -41,7 +52,7 @@ export interface Component<Props = any> {
   maintainerlink?: string;
 
   links: ComponentLink[];
-  properties: { [name: string]: Property[] };
+  properties: Record<string, Property[]>;
 
   usage: (props: Props) => string;
 }
@@ -181,7 +192,7 @@ const Typewriter = ({
 
 export default Typewriter;`;
     },
-    component: (color: string) => (
+    component: (props: { color: string }) => (
       <>
         <div className="relative flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
           <div></div>
@@ -574,7 +585,13 @@ export default function ButtonComponent() {
     name: "OTP",
     slug: "otp",
     description: "A simple OTP (One-Time Password) Interface.",
-    sampleCode: (props: { length: number; separatorIndex: number }) => {
+    sampleCode: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => {
       return `import React, {
 import React, {
   useState,
@@ -656,7 +673,13 @@ const OTP: React.FC<OTPComponentProps> = ({
 
 export default OTP;`;
     },
-    component: (props: { length: number; separatorIndex: number }) => (
+    component: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => (
       <>
         <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center">
           <OTPComponent
@@ -697,7 +720,13 @@ export default OTP;`;
     name: "Sonner",
     slug: "sonner",
     description: "A toast component build ontop of Sonner.",
-    sampleCode: (props: { length: number; separatorIndex: number }) => {
+    sampleCode: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => {
       return `import { Toaster as Sonner } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
@@ -736,7 +765,13 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
 export { Toaster };`;
     },
-    component: (props: { length: number; separatorIndex: number }) => (
+    component: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => (
       <>
         <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] py-4 text-center">
           <Sonner />
@@ -754,7 +789,13 @@ export { Toaster };`;
       { name: "Docs", link: "https://example.com/docs" },
       { name: "GitHub Repo", link: "https://github.com/example/repo" },
     ],
-    usage: (props: { length: number; separatorIndex: number }) => {
+    usage: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => {
       return `//Add a Toaster into the root of your project.
 import { Toaster } from "~/components/ui/toaster";
 
@@ -855,7 +896,13 @@ onClick={() =>
     name: "Social Button",
     slug: "socialButton",
     description: "An easy to use button to display socials.",
-    sampleCode: (props: { length: number; separatorIndex: number }) => {
+    sampleCode: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => {
       return `import React from "react";
 
 interface IconType {
@@ -957,7 +1004,13 @@ export default SocialButton;`;
     maintainer: "",
     maintainerlink: "",
     links: [],
-    usage: (props: { length: number; separatorIndex: number }) => {
+    usage: (props: {
+      color: string;
+      text: string;
+      Code: string;
+      length: number;
+      separatorIndex: number;
+    }) => {
       return `import { toast } from "~/components/ui/socialButton";
 
 <SocialButton

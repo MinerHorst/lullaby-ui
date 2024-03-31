@@ -1,8 +1,6 @@
 import React from "react";
 
-interface IconType {
-  [key: string]: React.ReactNode;
-}
+type IconType = Record<string, React.ReactNode>;
 
 const Icons: IconType = {
   facebook: (

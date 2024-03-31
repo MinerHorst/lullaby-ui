@@ -10,7 +10,7 @@ const TextGenerator = ({
   delay: number;
   color: string;
 }) => {
-  let wordsArray = inputText.split(" ");
+  const wordsArray = inputText.split(" ");
 
   return (
     <div>

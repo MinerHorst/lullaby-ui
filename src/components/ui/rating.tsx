@@ -14,13 +14,13 @@ const Rating = ({
   two: number;
   one: number;
 }) => {
-  let totalRatings = five + four + three + two + one;
+  const totalRatings = five + four + three + two + one;
 
-  let weightedScore = 5 * five + 4 * four + 3 * three + 2 * two + 1 * one;
+  const weightedScore = 5 * five + 4 * four + 3 * three + 2 * two + 1 * one;
 
-  let averageScore = weightedScore / totalRatings;
+  const averageScore = weightedScore / totalRatings;
 
-  let normalizedScore = Math.min(Math.max(averageScore, 0), 5);
+  const normalizedScore = Math.min(Math.max(averageScore, 0), 5);
 
   return (
     <div className="grid grid-cols-4 rounded-xl border-[6px] border-neutral-300 bg-white px-4 py-6 text-neutral-600 md:aspect-[4/1] md:h-[150px] md:px-0">
