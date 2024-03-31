@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Typewriter = ({
+const TypeWriter = ({
   text,
   delay = 0.2,
   color,
@@ -35,4 +35,4 @@ const Typewriter = ({
   );
 };
 
-export default Typewriter;
+export default TypeWriter;

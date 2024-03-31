@@ -11,7 +11,7 @@ import Sonner from "~/components/ui/sonner";
 import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
 import { TextArea } from "~/components/ui/textarea";
-import Typewriter from "~/components/ui/typeWriter";
+import TypeWriter from "~/components/ui/typeWriter";
 import DrawerComponent from "~/components/ui/drawer";
 import Rating from "~/components/ui/rating";
 
@@ -185,7 +185,7 @@ export default Typewriter;`;
     component: (color: string) => (
       <>
         <div className="relative flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
-          <Typewriter
+          <TypeWriter
             text="Hello, World! This is a Typewriter."
             delay={0.1}
             color={color}
