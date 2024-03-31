@@ -1351,7 +1351,7 @@ export { TextArea };`;
     component: () => (
       <>
         <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
-          <Rating />
+          <Rating five={59} four={31} three={1} two={13} one={13} />
         </div>
       </>
     ),
