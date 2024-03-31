@@ -3,6 +3,9 @@ import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
 import { Inter } from "next/font/google";
 
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import "../styles/prism-vsc-dark.css";
 
 import { api } from "~/utils/api";
@@ -26,6 +29,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <AnimatePresence>
           <Component {...pageProps} />
           <Toaster />
+          <Analytics />
+          <SpeedInsights />
           <motion.div id="drawer-root"></motion.div>
         </AnimatePresence>
       </main>
