@@ -57,7 +57,7 @@ const DrawerComponent = ({
             initial={{ opacity: 0 }}
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             animate={background}
-            className="absolute top-0 h-screen w-screen backdrop-blur-xl"
+            className="absolute top-0 h-screen w-screen bg-[rgb(17,18,26)]"
           >
             <button
               onClick={onClose}

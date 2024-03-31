@@ -105,17 +105,15 @@ const TextGenerator = ({
 export default TextGenerator;`;
     },
     component: (props: { color: string; text: string; delay: number }) => (
-      <div className="flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
+      <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] p-4 text-center">
         <TextGenerator
-          inputText={
-            "Hello, World! My name is Luis and I'm 16 years old. Lullaby UI is really more of a passion project for me, but be sure to share it on social media, if you like it!"
-          }
+          inputText={"Text Generator Effect. It takes words one by one."}
           color={props.color}
           delay={0.1}
         ></TextGenerator>
       </div>
     ),
-    image: "button-image-url.jpg",
+    image: "https://live.staticflickr.com/65535/53623348141_b26882b76d_c.jpg",
     image_alt: "Button Image",
     customization: true,
     customizations: [],
@@ -193,7 +191,7 @@ export default Typewriter;`;
     },
     component: (props: { color: string }) => (
       <>
-        <div className="relative flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
+        <div className="relative flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] p-4 text-center">
           <TypeWriter
             text="Hello, I'm a Typewriter!"
             delay={0.2}
@@ -202,7 +200,7 @@ export default Typewriter;`;
         </div>
       </>
     ),
-    image: "input-image-url.jpg",
+    image: "https://live.staticflickr.com/65535/53623675134_f3a930133a_c.jpg",
     image_alt: "Input Image",
     customization: true,
     customizations: [],
@@ -292,8 +290,8 @@ export default TextPulse;`;
         </div>
       </>
     ),
-    image: "input-image-url.jpg",
-    image_alt: "Input Image",
+    image: "https://live.staticflickr.com/65535/53623789120_d03ba3a981_c.jpg",
+    image_alt: "Image",
     customization: true,
     customizations: ["text"],
     dependencies: ["tailwindcss", "framer-motion"],
@@ -424,7 +422,7 @@ export default function ProductComponent() {
         </div>
       </>
     ),
-    image: "input-image-url.jpg",
+    image: "https://live.staticflickr.com/65535/53622392287_e2fd8f1e72_h.jpg",
     image_alt: "Input Image",
     customization: false,
     customizations: [],
@@ -558,7 +556,7 @@ export default function ButtonComponent() {
         )}
       </>
     ),
-    image: "something.jpg",
+    image: "",
     image_alt: "something",
     customization: true,
     customizations: ["Code"],
@@ -689,7 +687,7 @@ export default OTP;`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "https://live.staticflickr.com/65535/53623479503_1c6f1079cf_h.jpg",
     image_alt: "something",
     customization: true,
     customizations: [],
@@ -776,7 +774,7 @@ export { Toaster };`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "",
     image_alt: "something",
     customization: false,
     customizations: [],
@@ -994,7 +992,7 @@ export default SocialButton;`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "https://live.staticflickr.com/65535/53622452667_2805b15638_c.jpg",
     image_alt: "something",
     customization: false,
     customizations: [],
@@ -1129,7 +1127,7 @@ export default Button;`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "https://live.staticflickr.com/65535/53623668814_a7692805e0_c.jpg",
     image_alt: "something",
     customization: false,
     customizations: [],
@@ -1210,7 +1208,7 @@ export { Input };`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "https://live.staticflickr.com/65535/53622455267_2cd1809597_c.jpg",
     image_alt: "something",
     customization: false,
     customizations: [],
@@ -1285,7 +1283,7 @@ export { TextArea };`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "https://live.staticflickr.com/65535/53623542858_d512063925_c.jpg",
     image_alt: "something",
     customization: false,
     customizations: [],
@@ -1419,7 +1417,7 @@ const DrawerComponent = ({
 const useDrawer = (): [(drawer: DrawerData) => void, () => void] => {
   const [drawerData, setDrawerData] = useState<DrawerData | null>(null);
   const drawer = useAnimation();
-  const background = useAnimation();
+  const background = useAnimation(); 
 
   const showDrawer = (data: DrawerData) => {
     setDrawerData(data);
@@ -1465,7 +1463,7 @@ export default useDrawer;`;
         </div>
       </>
     ),
-    image: "something.jpg",
+    image: "https://live.staticflickr.com/65535/53622415917_08c832a304_h.jpg",
     image_alt: "something",
     customization: false,
     customizations: [],
@@ -1512,7 +1510,7 @@ const openDrawer = () => {
     },
   },
   {
-    id: 12,
+    id: 13,
     name: "Rating",
     slug: "rating",
     description: "TBD",
@@ -1526,8 +1524,8 @@ const openDrawer = () => {
         </div>
       </>
     ),
-    image: "something.jpg",
-    image_alt: "something",
+    image: "https://live.staticflickr.com/65535/53623274951_0725c01895_h.jpg",
+    image_alt: "Screenshot of the Rating Component",
     customization: false,
     customizations: [],
     dependencies: ["tailwindcss", "react"],
