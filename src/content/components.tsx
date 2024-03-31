@@ -13,6 +13,7 @@ import TextPulse from "~/components/ui/textPulse";
 import { TextArea } from "~/components/ui/textarea";
 import DrawerComponent from "~/components/ui/drawer";
 import Rating from "~/components/ui/rating";
+import TypeWriter from "~/components/ui/typeWriter";
 
 export interface ComponentLink {
   name: string;
@@ -162,16 +163,14 @@ import { AnimatePresence, motion } from "framer-motion";
 const Typewriter = ({
   text,
   delay = 0.2,
-  color,
 }: {
   text: string;
   delay: number;
-  color: string;
 }) => {
   const characters = [...text];
 
   return (
-    <div style={{ color: color }}>
+    <div>
       <AnimatePresence>
         {characters.map((letter, index) => (
           <motion.span
@@ -195,7 +194,11 @@ export default Typewriter;`;
     component: (props: { color: string }) => (
       <>
         <div className="relative flex h-full items-start justify-start rounded-md bg-[rgb(17,18,26)] p-4 text-start">
-          <div></div>
+          <TypeWriter
+            text="Hello, I'm a Typewriter!"
+            delay={0.2}
+            color={props.color}
+          ></TypeWriter>
         </div>
       </>
     ),
@@ -682,12 +685,7 @@ export default OTP;`;
     }) => (
       <>
         <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center">
-          <OTPComponent
-            separatorIndex={props.separatorIndex}
-            length={props.length}
-          />
-          <div>{props.length}</div>
-          <div>{props.separatorIndex}</div>
+          <OTPComponent separatorIndex={3} length={6} />
         </div>
       </>
     ),
@@ -1476,36 +1474,39 @@ export default useDrawer;`;
     maintainerlink: "",
     links: [],
     usage: () => {
-      return `import TextArea from "~/components/ui/textarea";
+      return `import Button from "~/components/ui/button";
+import useDrawer from "./drawer/useDrawer";
 
-<TextArea placeholder="Textarea Component" />`;
+const [showDrawer] = useDrawer();
+
+const openDrawer = () => {
+  const drawerContent = {
+    content: (
+      <div>
+        <h2>Drawer Content</h2>
+        <p>This is the content of the drawer.</p>
+      </div>
+    ),
+  };
+  showDrawer(drawerContent);
+};
+
+
+<Button display="custom" customText="Open Drawer" onClick={openDrawer}>
+  Open Drawer
+</Button>`;
     },
     properties: {
       Button: [
         {
-          propertyName: "type",
-          propertyType: "string",
-          propertyDescription: `The type of the Button: "signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
+          propertyName: "closeButton",
+          propertyType: "boolean",
+          propertyDescription: `Determines wether a Close Button should be rendered.`,
         },
         {
-          propertyName: "action",
-          propertyType: "void",
-          propertyDescription: `The action that should be triggered once the button is pressed.`,
-        },
-        {
-          propertyName: "iconPosition",
-          propertyType: "string",
-          propertyDescription: `iconPosition="left" (default) other: "right"`,
-        },
-        {
-          propertyName: "customIcon",
+          propertyName: "content",
           propertyType: "React.ReactNode",
-          propertyDescription: `customIcon={<Heart />} Be sure to specify type="custom"`,
-        },
-        {
-          propertyName: "customText",
-          propertyType: "string",
-          propertyDescription: `customText="Custom Button" Be sure to specify type="custom"`,
+          propertyDescription: `The content of the Drawer.`,
         },
       ],
     },
@@ -1516,7 +1517,7 @@ export default useDrawer;`;
     slug: "rating",
     description: "TBD",
     sampleCode: () => {
-      return ``;
+      return `Coming Soon!`;
     },
     component: () => (
       <>
@@ -1534,36 +1535,36 @@ export default useDrawer;`;
     maintainerlink: "",
     links: [],
     usage: () => {
-      return `import TextArea from "~/components/ui/textarea";
-
-<TextArea placeholder="Textarea Component" />`;
+      return `import Rating from "~/components/ui/rating"
+      
+<Rating five={59} four={31} three={1} two={13} one={13} />`;
     },
     properties: {
       Button: [
         {
-          propertyName: "type",
-          propertyType: "string",
-          propertyDescription: `The type of the Button: "signup"; "signin"; "logout"; "back"; "upload"; "custom"`,
+          propertyName: "five",
+          propertyType: "number",
+          propertyDescription: `Amount of ratings for the five star rating.`,
         },
         {
-          propertyName: "action",
-          propertyType: "void",
-          propertyDescription: `The action that should be triggered once the button is pressed.`,
+          propertyName: "four",
+          propertyType: "number",
+          propertyDescription: `Amount of ratings for the five four rating.`,
         },
         {
-          propertyName: "iconPosition",
-          propertyType: "string",
-          propertyDescription: `iconPosition="left" (default) other: "right"`,
+          propertyName: "three",
+          propertyType: "number",
+          propertyDescription: `Amount of ratings for the five three rating.`,
         },
         {
-          propertyName: "customIcon",
-          propertyType: "React.ReactNode",
-          propertyDescription: `customIcon={<Heart />} Be sure to specify type="custom"`,
+          propertyName: "two",
+          propertyType: "number",
+          propertyDescription: `Amount of ratings for the five two rating.`,
         },
         {
-          propertyName: "customText",
-          propertyType: "string",
-          propertyDescription: `customText="Custom Button" Be sure to specify type="custom"`,
+          propertyName: "one",
+          propertyType: "number",
+          propertyDescription: `Amount of ratings for the five one rating.`,
         },
       ],
     },

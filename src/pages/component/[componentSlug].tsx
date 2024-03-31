@@ -21,7 +21,7 @@ const ComponentPage: React.FC = () => {
   const remountComponent = () => {
     setKey((prevKey) => prevKey + 1);
   };
-  
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type ComponentProps = Record<string, any>;
 
@@ -377,61 +377,65 @@ const ComponentPage: React.FC = () => {
                       </div>
                     </div>
                   )}
-                  <div className="space-y-4 rounded-md bg-violet-500/10 p-4">
-                    <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
-                      Properties
-                    </h1>
-                    <div className="overflow-scroll">
-                      {Object.entries(component.properties).map(
-                        ([category, properties]) => (
-                          <table key={category} className="w-full">
-                            <thead>
-                              <tr className="m-0 p-0 text-sm">
-                                <th className="py-4 text-start font-medium">
-                                  <h2>{category}</h2>
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="border-[0.3px]">
-                              <tr className="m-0 border-b-[0.3px] p-0 text-sm">
-                                <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium">
-                                  Prop name
-                                </th>
-                                <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium ">
-                                  Type
-                                </th>
-                                <th className="px-4 py-3 text-start font-sans font-medium">
-                                  Description
-                                </th>
-                              </tr>
-                              {properties.map((property, index) => (
-                                <tr
-                                  key={index}
-                                  className="m-0 border-b-[0.3px] p-0 text-sm"
-                                >
-                                  <td className="border-r-[0.3px] px-4 py-3 font-sans">
-                                    <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
-                                      {property.propertyName}
-                                    </code>
-                                  </td>
-                                  <td className="border-r-[0.3px] px-4 py-3 font-sans md:text-start">
-                                    <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
-                                      {property.propertyType}
-                                    </code>
-                                  </td>
-                                  <td className="px-4 py-3 font-sans">
-                                    <p className="relative w-fit rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
-                                      {property.propertyDescription}
-                                    </p>
-                                  </td>
+                  {component.properties ? (
+                    <div className="space-y-4 rounded-md bg-violet-500/10 p-4">
+                      <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
+                        Properties
+                      </h1>
+                      <div className="overflow-scroll">
+                        {Object.entries(component.properties).map(
+                          ([category, properties]) => (
+                            <table key={category} className="w-full">
+                              <thead>
+                                <tr className="m-0 p-0 text-sm">
+                                  <th className="py-4 text-start font-medium">
+                                    <h2>{category}</h2>
+                                  </th>
                                 </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        ),
-                      )}
+                              </thead>
+                              <tbody className="border-[0.3px]">
+                                <tr className="m-0 border-b-[0.3px] p-0 text-sm">
+                                  <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium">
+                                    Prop name
+                                  </th>
+                                  <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium ">
+                                    Type
+                                  </th>
+                                  <th className="px-4 py-3 text-start font-sans font-medium">
+                                    Description
+                                  </th>
+                                </tr>
+                                {properties.map((property, index) => (
+                                  <tr
+                                    key={index}
+                                    className="m-0 border-b-[0.3px] p-0 text-sm"
+                                  >
+                                    <td className="border-r-[0.3px] px-4 py-3 font-sans">
+                                      <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
+                                        {property.propertyName}
+                                      </code>
+                                    </td>
+                                    <td className="border-r-[0.3px] px-4 py-3 font-sans md:text-start">
+                                      <code className="relative rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
+                                        {property.propertyType}
+                                      </code>
+                                    </td>
+                                    <td className="px-4 py-3 font-sans">
+                                      <p className="relative w-fit rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
+                                        {property.propertyDescription}
+                                      </p>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          ),
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>

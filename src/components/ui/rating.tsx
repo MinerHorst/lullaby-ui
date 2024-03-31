@@ -2,11 +2,11 @@ import { Star } from "lucide-react";
 import React from "react";
 
 const Rating = ({
-  five = 89,
-  four = 13,
-  three = 0,
-  two = 0,
-  one = 1,
+  five,
+  four,
+  three,
+  two,
+  one,
 }: {
   five: number;
   four: number;
