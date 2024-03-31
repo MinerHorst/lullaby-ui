@@ -66,7 +66,9 @@ export default function Home() {
               <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px]">
                 <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
                 <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
-                  Custom Components <ArrowRight />
+                  <Link href="/pricing" className="flex items-center gap-2">
+                    Custom Components <ArrowRight />
+                  </Link>
                 </span>
               </button>
             </div>

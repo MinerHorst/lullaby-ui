@@ -1,7 +1,7 @@
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Head from "next/head";
-import React from "react";
 import NavbarComponent from "~/components/Navbar";
+import ContactComponent from "~/components/index/contact";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       <main className="flex h-full w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c]">
         <NavbarComponent />
         <div className="relative z-[50] grid grid-cols-1 gap-4 px-4 pb-4 md:h-[91vh] md:grid-cols-2 lg:grid-cols-4">
-          <div className="col-span-1 flex flex-col justify-between space-y-4 rounded-3xl bg-slate-500/10 text-white md:h-[80vh] lg:h-full">
+          <div className="col-span-1 flex flex-col justify-between space-y-4 rounded-3xl bg-slate-500/10 p-4 text-white md:h-[80vh] lg:h-full">
             <div className="flex flex-col space-y-8">
               <p className="text-sm font-bold">Existing Components</p>
               <div className="flex flex-col justify-between space-y-4">
@@ -92,9 +92,12 @@ export default function Home() {
               </ul>
             </div>
 
-            <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px]">
-              <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
-              <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
+            <button
+              className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px] disabled:cursor-not-allowed disabled:opacity-50"
+              disabled
+            >
+              <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] cursor-not-allowed bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
+              <span className="z-[20] inline-flex h-full w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
                 Buy Now <ArrowRight />
               </span>
             </button>
@@ -208,6 +211,9 @@ export default function Home() {
               </span>
             </button>
           </div>
+        </div>
+        <div className="w-full p-4">
+          <ContactComponent />
         </div>
       </main>
     </>

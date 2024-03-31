@@ -186,7 +186,7 @@ export default function NavbarComponent() {
               <li>Pricing</li>
             </Link>
 
-            <li>Ressources</li>
+            <li className="cursor-not-allowed">Ressources</li>
           </ul>
         </div>
         <div className="flex items-center gap-4">
