@@ -3,8 +3,8 @@ import Wheel from "@uiw/react-color-wheel";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import NavbarComponent from "~/components/Navbar";
+import React, { ChangeEvent, useState } from "react";
+import NavbarComponent from "../../components/Navbar";
 import CodeBlockComponent from "~/components/codeBlock";
 
 import components, { Component } from "~/content/components";
