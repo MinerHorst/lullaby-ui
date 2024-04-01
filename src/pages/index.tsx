@@ -39,28 +39,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="absolute grid h-screen w-screen grid-cols-12 grid-rows-12 px-4">
-        <div className="col-span-full row-span-full row-start-8 flex h-full w-full flex-col justify-around rounded-lg bg-violet-950/40 px-4 py-4 md:col-span-6 md:col-start-7 md:row-span-8 md:row-start-3">
-          <div className="flex h-[40%] items-center justify-between">
-            <div className="relative z-[40] flex h-full w-[60%] items-center justify-center rounded-md bg-white/10">
-              <ColorChangingComponent color={hsvaToHex(hsva)} />
-            </div>
-            <Wheel
-              color={hsva}
-              onChange={(color) => setHsva({ ...hsva, ...color.hsva })}
-              className="relative z-[500] hidden flex-shrink-0 md:inline"
-            />
-          </div>
-
-          <div className="relative z-[60] h-[50%] w-full">
+        <div className="col-span-full row-span-5 row-start-7 flex h-full w-full flex-col justify-around rounded-lg bg-violet-950/40 p-4 md:col-span-6 md:col-start-7 md:row-span-8 md:row-start-3">
+          <div className="relative z-[20] h-full w-full">
             <CodeBlockComponent language="language-jsx" code={codeString} />
           </div>
         </div>
       </div>
 
-      <main className="flex min-h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c] md:h-screen">
+      <main className="flex h-screen w-screen flex-col items-center bg-gradient-to-b from-[#000] to-[#15162c] md:h-screen">
         <NavbarComponent />
         <div className="relative z-[50] grid h-full w-screen grid-cols-12 grid-rows-12 gap-4 px-4 md:pt-0">
-          <div className="col-span-full row-span-6 flex flex-col justify-around space-y-4 rounded-lg bg-slate-500/10 text-white md:col-span-7 md:row-span-6 md:row-start-4">
+          <div className="col-span-full row-span-4 row-start-2 flex flex-col justify-around space-y-4 rounded-lg bg-slate-500/10 text-white md:col-span-7 md:row-span-6 md:row-start-1 md:row-start-4">
             <motion.h1
               initial={{ opacity: 0, y: -4 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -75,9 +64,7 @@ export default function Home() {
               transition={{ duration: 1 }}
               className="w-[80%] px-4 text-muted-foreground"
             >
-              With copy and paste components that allow for customization right
-              in the browser streamlining your development process allowing for
-              faster product launch.
+              With copy and paste components allowing for faster product launch.
             </motion.p>
             <div className="flex justify-start px-4 pb-4 md:justify-start">
               <Link href={"/components"}>
@@ -97,7 +84,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-span-full row-start-12 hidden justify-between md:flex">
+          <div className="col-span-full row-start-12 flex justify-between">
             <div className="flex items-center">
               <a href="https://twitter.com">
                 <svg
@@ -134,7 +121,7 @@ export default function Home() {
                   <path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
                   <path d="M15 12v-3"></path>
                 </svg>
-                <p>Node.JS</p>
+                <p className="hidden md:inline">Node.JS</p>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground ">
                 <svg
@@ -157,7 +144,7 @@ export default function Home() {
                   <path d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"></path>
                   <path d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"></path>
                 </svg>
-                <p>React</p>
+                <p className="hidden md:inline">React</p>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground ">
                 <svg
@@ -174,7 +161,7 @@ export default function Home() {
                 >
                   <path d="M18.5 9.51a4.22 4.22 0 0 1-1.91-1.34A5.77 5.77 0 0 0 12 6a4.72 4.72 0 0 0-5 4 3.23 3.23 0 0 1 3.5-1.49 4.32 4.32 0 0 1 1.91 1.35A5.77 5.77 0 0 0 17 12a4.72 4.72 0 0 0 5-4 3.2 3.2 0 0 1-3.5 1.51zm-13 4.98a4.22 4.22 0 0 1 1.91 1.34A5.77 5.77 0 0 0 12 18a4.72 4.72 0 0 0 5-4 3.23 3.23 0 0 1-3.5 1.49 4.32 4.32 0 0 1-1.91-1.35A5.8 5.8 0 0 0 7 12a4.72 4.72 0 0 0-5 4 3.2 3.2 0 0 1 3.5-1.51z"></path>
                 </svg>
-                <p>Tailwind CSS</p>
+                <p className="hidden md:inline">Tailwind CSS</p>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground ">
                 <svg
@@ -192,7 +179,7 @@ export default function Home() {
                   <path d="M12 12l-8 -8v16l16 -16v16l-4 -4"></path>
                   <path d="M20 12l-8 8l-4 -4"></path>
                 </svg>
-                <p>Framer Motion</p>
+                <p className="hidden md:inline">Framer Motion</p>
               </div>
             </div>
           </div>

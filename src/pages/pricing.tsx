@@ -1,5 +1,6 @@
 import { ArrowRight, CircleCheck } from "lucide-react";
 import Head from "next/head";
+import Link from "next/link";
 import NavbarComponent from "~/components/Navbar";
 import ContactComponent from "~/components/index/contact";
 
@@ -52,7 +53,9 @@ export default function Home() {
             <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px]">
               <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
               <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
-                Browse Components <ArrowRight />
+                <Link className="flex gap-2" href="/components">
+                  Browse Components <ArrowRight />
+                </Link>
               </span>
             </button>
           </div>
@@ -92,13 +95,12 @@ export default function Home() {
               </ul>
             </div>
 
-            <button
-              className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px] disabled:cursor-not-allowed disabled:opacity-50"
-              disabled
-            >
+            <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px] disabled:cursor-not-allowed disabled:opacity-50">
               <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] cursor-not-allowed bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
-              <span className="z-[20] inline-flex h-full w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
-                Buy Now <ArrowRight />
+              <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
+                <Link className="flex gap-2" href="/pricing#contact">
+                  Buy now <ArrowRight />
+                </Link>
               </span>
             </button>
           </div>
@@ -152,7 +154,9 @@ export default function Home() {
             <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px]">
               <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
               <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
-                Buy now <ArrowRight />
+                <Link className="flex gap-2" href="/pricing#contact">
+                  Buy now <ArrowRight />
+                </Link>
               </span>
             </button>
           </div>
@@ -207,7 +211,9 @@ export default function Home() {
             <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px]">
               <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
               <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">
-                Contact now <ArrowRight />
+                <Link className="flex gap-2" href="/pricing#contact">
+                  Contact now <ArrowRight />
+                </Link>
               </span>
             </button>
           </div>

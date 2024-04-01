@@ -51,7 +51,7 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
         <React.Fragment key={index}>
           <input
             key={index}
-            type="text"
+            type="tel"
             maxLength={1}
             value={digit}
             onChange={(e) => handleChange(e, index)}

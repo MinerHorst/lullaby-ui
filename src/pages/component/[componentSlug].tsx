@@ -147,10 +147,10 @@ const ComponentPage: React.FC = () => {
                       )}
                     </div>
 
-                    <div className="grid h-fit w-full grid-cols-3 gap-4 rounded-md bg-violet-500/10 p-4">
+                    <div className="flex w-full flex-col gap-4 rounded-md bg-violet-500/10 p-4">
                       <div
                         key={key}
-                        className="col-span-full aspect-[1/0.5] h-full w-full rounded-md"
+                        className="aspect-[1/0.5] h-full w-full rounded-md"
                       >
                         {component.component({
                           color: "",
@@ -161,7 +161,7 @@ const ComponentPage: React.FC = () => {
                           separatorIndex: 0,
                         })}
                       </div>
-                      <div className="relative col-span-full flex h-full w-full flex-col items-center justify-start">
+                      <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden md:h-[50vh] ">
                         <CodeBlockComponent
                           code={component.sampleCode({
                             color: "",
@@ -175,14 +175,6 @@ const ComponentPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <h1 className=" font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
-                    Customization
-                  </h1>
-
-                  <div className="col-span-full w-full rounded-md bg-violet-500/10 p-4 md:hidden">
-                    There&apos;s no customization options available on mobile.
-                  </div>
-
                   <div className="hidden h-fit grid-cols-3 gap-4 md:grid">
                     <h1 className="hidden font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)] md:inline">
                       Installation
@@ -202,7 +194,7 @@ const ComponentPage: React.FC = () => {
                         </h3>
                       </div>
 
-                      <div className="relative flex flex-col items-center justify-center">
+                      <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
                         <CodeBlockComponent
                           code={component.sampleCode({
                             color: "",
@@ -220,7 +212,7 @@ const ComponentPage: React.FC = () => {
                           /pages/index.tsx
                         </h3>
                       </div>
-                      <div className="relative flex flex-col items-center justify-center">
+                      <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
                         <CodeBlockComponent
                           code={component.usage({
                             color: "",
@@ -251,7 +243,7 @@ const ComponentPage: React.FC = () => {
                         /components/ui/{component.slug.toLowerCase()}.tsx
                       </h3>
                     </div>
-                    <div className="relative flex flex-col items-center justify-center">
+                    <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
                       <CodeBlockComponent
                         code={component.sampleCode({
                           color: "",
@@ -269,7 +261,7 @@ const ComponentPage: React.FC = () => {
                         /pages/index.tsx
                       </h3>
                     </div>
-                    <div className="relative flex flex-col items-center justify-center">
+                    <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
                       <CodeBlockComponent
                         code={component.usage({
                           color: "",
@@ -320,7 +312,7 @@ const ComponentPage: React.FC = () => {
                                   <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium ">
                                     Type
                                   </th>
-                                  <th className="px-4 py-3 text-start font-sans font-medium">
+                                  <th className="border-r-[0.3px] px-4 py-3 text-start font-sans font-medium">
                                     Description
                                   </th>
                                 </tr>
@@ -339,7 +331,7 @@ const ComponentPage: React.FC = () => {
                                         {property.propertyType}
                                       </code>
                                     </td>
-                                    <td className="px-4 py-3 font-sans">
+                                    <td className="border-r-[0.3px] px-4 py-3 font-sans">
                                       <p className="relative w-fit rounded bg-[rgb(17,18,26)] px-[0.3rem] py-[0.2rem] text-sm">
                                         {property.propertyDescription}
                                       </p>

@@ -69,6 +69,7 @@ export const Form = () => {
         <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
           Contact
         </h1>
+        <p className="text-neutral-400">*Stripe Integration coming soon.</p>
         <form
           ref={form}
           onSubmit={sendEmail}
