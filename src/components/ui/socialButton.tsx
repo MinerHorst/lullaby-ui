@@ -56,19 +56,19 @@ const Icons: IconType = {
 };
 
 const SocialButton = ({
-  text = "More posts on",
-  social = "twitter",
-  socialLink = "https://twitter.com",
+  text,
+  social,
+  socialLink,
 }: {
-  text?: string;
-  social?: string;
-  socialLink?: string;
+  text: string;
+  social: string;
+  socialLink: string;
 }) => {
   const selectedIcon = Icons[social];
 
   return (
-    <a href={socialLink}>
-      <div className="flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-3 text-black">
+    <a href={socialLink} target="_blank">
+      <div className="flex w-fit items-center justify-between gap-3 rounded-xl bg-white px-4 py-3 text-black">
         {text}
         <div className="aspect-square w-[20px]">{selectedIcon}</div>
       </div>

@@ -17,7 +17,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex h-screen w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] pt-4 md:pb-10">
+      <main className="flex h-[100dvh] w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] pt-4 md:pb-10 md:pt-0">
         <NavbarComponent />
         <div className="grid h-full w-full grid-cols-12 grid-rows-12 text-white">
           <div className="col-span-full row-start-1 mx-4 flex h-[5vh] overflow-scroll md:hidden">

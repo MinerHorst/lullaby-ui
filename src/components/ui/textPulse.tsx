@@ -1,19 +1,11 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const TextPulse = ({
-  text,
-  delay,
-  color,
-}: {
-  text: string;
-  delay: number;
-  color: string;
-}) => {
+const TextPulse = ({ text, delay }: { text: string; delay: number }) => {
   const characters = [...text];
 
   return (
-    <div style={{ color: color }}>
+    <div>
       <AnimatePresence>
         {characters.map((letter, index) => (
           <motion.span

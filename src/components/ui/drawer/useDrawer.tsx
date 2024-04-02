@@ -51,20 +51,20 @@ const DrawerComponent = ({
           initial={{ y: "+100%", scale: 0.6 }}
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           animate={drawer}
-          className={`absolute left-0 top-0 z-[9999] flex h-screen w-screen items-center justify-center overflow-hidden rounded-md text-white`}
+          className={`fixed left-0 top-0 z-[9999] flex h-screen w-screen items-center justify-center overflow-hidden rounded-md text-white`}
         >
           <motion.div
             initial={{ opacity: 0 }}
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             animate={background}
-            className="absolute top-0 h-screen w-screen bg-[rgb(17,18,26)]"
+            className="absolute top-0 h-screen w-screen backdrop-blur-lg"
           >
             <button
               onClick={onClose}
               className="h-full w-full cursor-default"
             />
           </motion.div>
-          <div className="relative mt-[20vh] h-[100vh] w-[60%] overflow-y-scroll rounded-t-xl bg-white text-black">
+          <div className="relative mt-[20vh] h-[100vh] w-[90%] overflow-y-scroll rounded-t-xl bg-white text-black md:w-[60%]">
             <div className="sticky top-0 flex w-full items-center justify-end p-2">
               <button
                 onClick={onClose}

@@ -34,8 +34,8 @@ export default function CodeBlockComponent({
   };
 
   return (
-    <div className="relative flex h-full w-full items-center justify-center rounded-md pt-8">
-      <pre ref={codeRef} className="h-full w-full overflow-scroll md:min-h-fit">
+    <div className="relative flex h-full w-full items-center justify-center rounded-md pt-8 md:max-h-[15vh] lg:max-h-[50vh]">
+      <pre ref={codeRef} className="h-full w-full overflow-scroll lg:min-h-fit">
         <code className={language}>{code.toString()}</code>
       </pre>
       {copied ? (

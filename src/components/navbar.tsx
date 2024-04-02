@@ -32,10 +32,10 @@ export default function NavbarComponent() {
             <Command label="Command Menu" className="h-full w-full">
               <div className="sticky top-0 flex w-full items-center justify-center gap-2">
                 <div className="flex h-full w-full items-center gap-2 bg-[rgb(17,18,26)] px-3 py-2">
-                  <Search size={16} className="text-muted-foreground" />
+                  <Search size={16} className="text-neutral-400" />
                   <Command.Input
                     placeholder="Search..."
-                    className="flex w-full flex-row items-center justify-between border-transparent bg-transparent shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[rgb(131,131,138)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full flex-row items-center justify-between border-transparent bg-transparent shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50"
                   />
                   {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,11 +48,11 @@ export default function NavbarComponent() {
 
               <div className="py-4">
                 <Command.List className="py-2">
-                  <Command.Empty className="px-2 text-muted-foreground">
+                  <Command.Empty className="px-2 text-neutral-400">
                     No results found.
                   </Command.Empty>
 
-                  <Command.Group className="mx-2 text-sm font-light text-muted-foreground">
+                  <Command.Group className="mx-2 text-sm font-light text-neutral-400">
                     <h1 className="px-2 py-2 text-xs">Installation</h1>
                     <div className="text-white">
                       <Command.Item className="rounded-md py-2 text-base hover:bg-neutral-300/10">
@@ -91,7 +91,7 @@ export default function NavbarComponent() {
                     </div>
                   </Command.Group>
 
-                  <Command.Group className="mx-2 text-sm font-light text-muted-foreground">
+                  <Command.Group className="mx-2 text-sm font-light text-neutral-400">
                     <h1 className="px-2 py-2 text-xs">Components</h1>
                     <div className="text-white">
                       <ul className="space-y-2 text-sm text-white">
@@ -125,9 +125,9 @@ export default function NavbarComponent() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="sticky left-0 top-0 z-[500] flex min-h-[5svh] w-screen items-center justify-between bg-black/10 p-4 text-white backdrop-blur-[2px] md:hidden"
+        className="sticky left-0 top-0 z-[500] flex h-[10vh] min-h-[5svh] w-screen items-center justify-between bg-black/10 p-4 text-white backdrop-blur-[2px] md:hidden"
       >
-        <Link href={"/"} className="flex items-center gap-4">
+        <Link href={"/"} className="col-span-3 flex items-center gap-4">
           <Image
             src={logo_black}
             alt="logo"
@@ -135,7 +135,7 @@ export default function NavbarComponent() {
             className="rounded-md border border-muted-foreground"
           ></Image>
         </Link>
-        <div className="text-muted-foreground">
+        <div className="text-neutral-400">
           <ul className="flex gap-4">
             <Link href={"/pricing"}>
               <li>Pricing</li>
@@ -147,14 +147,14 @@ export default function NavbarComponent() {
             className="flex h-9 w-full items-center gap-4 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
             onClick={(e) => setIsOpen(!isOpen)}
           >
-            <p className="text-muted-foreground">
+            <p className="text-neutral-400">
               <Search size={16} />
             </p>
-            <p className="hidden text-muted-foreground lg:inline">
+            <p className="hidden text-neutral-400 lg:inline">
               Search Components
             </p>
-            <p className="inline text-muted-foreground lg:hidden">Search...</p>
-            <kbd className="pointer-events-none right-[0.3rem] hidden h-5 select-none flex-row items-center justify-center gap-1 rounded border border-muted-foreground p-2 px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 sm:flex">
+            <p className="inline text-neutral-400 lg:hidden">Search...</p>
+            <kbd className="pointer-events-none right-[0.3rem] hidden h-5 select-none flex-row items-center justify-center gap-1 rounded border border-muted-foreground p-2 px-1.5 font-mono text-[10px] font-medium text-neutral-400 opacity-100 sm:flex">
               <span className="text-xs">⌘</span>K
             </kbd>
           </button>
@@ -165,9 +165,9 @@ export default function NavbarComponent() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="relative z-[500] m-4 hidden min-h-[5svh] w-screen items-center justify-between px-4 text-white md:flex"
+        className="relative z-[500] m-4 hidden min-h-[5svh] w-screen grid-cols-12 px-4 text-white md:grid"
       >
-        <Link href={"/"} className="flex items-center gap-4">
+        <Link href={"/"} className="col-span-3 flex items-center gap-4">
           <Image
             src={logo_black}
             alt="logo"
@@ -177,7 +177,7 @@ export default function NavbarComponent() {
 
           <p className="text-xl font-medium">Lullaby UI</p>
         </Link>
-        <div className="text-muted-foreground">
+        <div className="col-span-4 col-start-5 flex items-center justify-center text-neutral-400">
           <ul className="flex gap-4">
             <Link href={`/components`}>
               <li>Components</li>
@@ -186,22 +186,22 @@ export default function NavbarComponent() {
               <li>Pricing</li>
             </Link>
 
-            <li className="cursor-not-allowed">Ressources</li>
+            <li className="cursor-not-allowed">Resources</li>
           </ul>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="col-span-3 col-start-10 flex items-center gap-4">
           <button
-            className="flex h-9 w-full items-center gap-4 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+            className="flex h-9 w-full items-center justify-between gap-4 rounded-md border border-neutral-400 bg-transparent px-3 py-1 text-sm"
             onClick={(e) => setIsOpen(!isOpen)}
           >
-            <p className="text-muted-foreground">
+            <p className="text-neutral-400">
               <Search size={16} />
             </p>
-            <p className="hidden text-muted-foreground lg:inline">
+            <p className="hidden text-neutral-400 lg:inline">
               Search Components
             </p>
-            <p className="inline text-muted-foreground lg:hidden">Search...</p>
-            <kbd className="pointer-events-none right-[0.3rem] hidden h-5 select-none flex-row items-center justify-center gap-1 rounded border border-muted-foreground p-2 px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 sm:flex">
+            <p className="inline text-neutral-400 lg:hidden">Search...</p>
+            <kbd className="pointer-events-none right-[0.3rem] hidden h-5 select-none flex-row items-center justify-center gap-1 rounded border border-muted-foreground p-2 px-1.5 font-mono text-[10px] font-medium text-neutral-400 opacity-100 sm:flex">
               <span className="text-xs">⌘</span>K
             </kbd>
           </button>

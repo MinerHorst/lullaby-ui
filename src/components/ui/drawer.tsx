@@ -9,8 +9,11 @@ export default function DrawerComponent() {
     const drawerContent = {
       content: (
         <div>
-          <h2>Drawer Content</h2>
-          <p>This is the content of the drawer.</p>
+          <h2>Hello World!</h2>
+          <p>
+            This is a fully customizable Drawer Component built ontop of React
+            Portals.
+          </p>
         </div>
       ),
     };

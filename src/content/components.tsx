@@ -14,6 +14,8 @@ import TextArea from "~/components/ui/textarea";
 import DrawerComponent from "~/components/ui/drawer";
 import Rating from "~/components/ui/rating";
 import TypeWriter from "~/components/ui/typeWriter";
+import ToolbarComponent from "~/components/ui/toolbarComponent";
+import MentionComponent from "~/components/ui/mentionComponent";
 
 export interface ComponentLink {
   name: string;
@@ -108,7 +110,6 @@ export default TextGenerator;`;
       <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] p-4 text-center">
         <TextGenerator
           inputText={"Text Generator Effect. It takes words one by one."}
-          color={props.color}
           delay={0.1}
         ></TextGenerator>
       </div>
@@ -282,11 +283,7 @@ export default TextPulse;`;
     component: (props: { color: string; text: string }) => (
       <>
         <div className="flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] text-center [font-size:_clamp(2.5em,3vw,8em)]">
-          <TextPulse
-            text={props.text || "Hello, World!?"}
-            delay={0.2}
-            color={props.color}
-          />
+          <TextPulse text={props.text || "Hello, World!?"} delay={0.2} />
         </div>
       </>
     ),
@@ -602,12 +599,12 @@ import React, {
   useEffect,
 } from "react";
 
-interface OTPComponentProps {
+interface OTPProps {
   length: number;
   separatorIndex: number;
 }
 
-const OTP: React.FC<OTPComponentProps> = ({
+const OTP: React.FC<OTPProps> = ({
   length,
   separatorIndex,
 }) => {
@@ -694,7 +691,9 @@ export default OTP;`;
     dependencies: ["tailwindcss"],
     links: [],
     usage: (props: { color: string; text: string }) => {
-      return ``;
+      return `Import OTP from "~/components/ui/otp"
+      
+      <OTPComponent length={6} separatorIndex={3} action={(otp) => console.log("OTP Filled:", otp)} />`;
     },
     properties: {
       OTP: [
@@ -707,6 +706,12 @@ export default OTP;`;
           propertyName: "seperatorIndex",
           propertyType: "number",
           propertyDescription: "Index where a seperator is displayed.",
+        },
+        {
+          propertyName: "action",
+          propertyType: "function",
+          propertyDescription:
+            'The action that should be fire when the OTP is filled. action={(otp) => console.log("OTP Filled:", otp)}',
         },
       ],
     },
@@ -1563,6 +1568,301 @@ const openDrawer = () => {
           propertyName: "one",
           propertyType: "number",
           propertyDescription: `Amount of ratings for the five one rating.`,
+        },
+      ],
+    },
+  },
+  {
+    id: 14,
+    name: "Toolbar",
+    slug: "toolbar",
+    description:
+      "A simple customizable toolbar component available in dark and lightmode.",
+    sampleCode: () => {
+      return `import React, { ButtonHTMLAttributes, ReactNode } from "react";
+
+export function ToolbarWrapper({
+  children,
+  style = "dark",
+}: {
+  children: ReactNode;
+  style?: "light" | "dark";
+}) {
+  return (
+    <div
+    className={\`flex w-fit items-center gap-3 rounded-xl border border-neutral-400"} \${
+      style === "light" ? "bg-white text-black" : "bg-black text-white"
+    } px-4 py-2\`}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function ToolbarGroup({
+  separator,
+  children,
+}: {
+  separator: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex gap-4">
+      {children}
+      {separator && <Separator />}
+    </div>
+  );
+}
+
+type ToolbarButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+
+export function ToolbarButton({
+  style = "dark",
+  ...props
+}: ToolbarButtonProps & { style?: "light" | "dark" }) {
+  return <button {...props} />;
+}
+
+export function Separator() {
+  return <div className="h-6 w-[1px] bg-neutral-400/50"></div>;
+}
+
+export default function Toolbar({
+  children,
+  style = "dark",
+}: {
+  children: ReactNode;
+  style?: "light" | "dark";
+}) {
+  return <ToolbarWrapper style={style}>{children}</ToolbarWrapper>;
+}`;
+    },
+    component: () => (
+      <>
+        <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
+          <ToolbarComponent />
+        </div>
+      </>
+    ),
+    image: "https://live.staticflickr.com/65535/53625755142_06f5c75e64_c.jpg",
+    image_alt: "Screenshot of the Toolbar Component",
+    customization: false,
+    customizations: [],
+    dependencies: ["tailwindcss", "lucide-react", "react"],
+    maintainer: "",
+    maintainerlink: "",
+    links: [],
+    usage: () => {
+      return `import React from "react";
+import {
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Pen,
+  Settings,
+  Share,
+} from "lucide-react";
+import Toolbar, {
+  ToolbarGroup,
+  ToolbarButton,
+  Separator,
+} from "~/components/ui/toolbar";
+
+export default function ToolbarComponent() {
+  return (
+    <Toolbar style="light">
+      <ToolbarGroup separator={true}>
+        <ToolbarButton>
+          <Settings size={16} />
+        </ToolbarButton>
+        <ToolbarButton>
+          <Pen size={16} />
+        </ToolbarButton>
+      </ToolbarGroup>
+      <ToolbarGroup separator={true}>
+        <ToolbarButton>
+          <Calendar size={16} />
+        </ToolbarButton>
+        <Separator />
+        <ToolbarButton>
+          <Share size={16} />
+        </ToolbarButton>
+      </ToolbarGroup>
+      <ToolbarGroup separator={false}>
+        <ToolbarButton>
+          <ChevronLeft size={24} />
+        </ToolbarButton>
+        <ToolbarButton>
+          <ChevronRight size={24} />
+        </ToolbarButton>
+      </ToolbarGroup>
+    </Toolbar>
+  );
+}`;
+    },
+    properties: {
+      Toolbar: [
+        {
+          propertyName: "style",
+          propertyType: "string",
+          propertyDescription: `"light" | "dark"`,
+        },
+      ],
+      ToolbarGroup: [
+        {
+          propertyName: "separator",
+          propertyType: "boolean",
+          propertyDescription: `Wether or not a separator should be displayed at the right of the group.`,
+        },
+      ],
+    },
+  },
+  {
+    id: 15,
+    name: "Mention",
+    slug: "mention",
+    description:
+      "A simple @mention component that, when hovered, displays additional information.",
+    sampleCode: () => {
+      return `import React, { useState } from "react";
+
+export function MentionButton({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="w-fit cursor-pointer text-neutral-400">{children}</div>
+  );
+}
+
+export function MentionDisplay({
+  children,
+  style = "dark",
+}: {
+  children: React.ReactNode;
+  style?: "light" | "dark";
+}) {
+  
+  
+
+  return (
+    <div
+      className={\` z-10 flex h-fit w-fit items-center text-start justify-between gap-4 rounded-xl border border-neutral-400 px-4 py-2 \${
+        style === "light" ? "bg-white text-black" : "bg-black text-white"
+      }\`}
+    >
+      {children}
+    </div>
+  );
+}
+
+type MentionProfileProps = React.ImgHTMLAttributes<HTMLImageElement>;
+
+export function MentionProfile({
+  rounded,
+  ...props
+}: MentionProfileProps & { rounded?: boolean }) {
+  return (
+    <img
+      {...props}
+      className={\`h-10 w-10 \${rounded === true ? "rounded-full" : "rounded-none"}\`}
+    />
+  );
+}
+
+export function MentionEmail({ children }: { children: React.ReactNode }) {
+  return <div className="text-neutral-400">{children}</div>;
+}
+export function MentionName({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
+}
+
+export function MentionSocials({ children }: { children: React.ReactNode }) {
+  return <div className="flex flex-col">{children}</div>;
+}
+
+export function MentionWrapper({
+  children,
+  style = "light",
+}: {
+  children: React.ReactNode;
+  style?: "light" | "dark";
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const firstChild = React.Children.toArray(children)[0];
+  const secondChild = React.Children.toArray(children)[1];
+
+  return (
+    <div
+      className={\`fit relative flex h-[95px] w-[290px] flex-col items-center justify-end space-y-2\`}
+    >
+      {isHovered && <div>{secondChild}</div>}
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {firstChild}
+      </div>
+    </div>
+  );
+}
+
+export default MentionWrapper;`;
+    },
+    component: () => (
+      <>
+        <div className="flex h-full flex-col items-center justify-center space-y-2 rounded-md bg-[rgb(17,18,26)] p-4 text-center">
+          <MentionComponent />
+        </div>
+      </>
+    ),
+    image: "https://live.staticflickr.com/65535/53626591212_dd894716e5_c.jpg",
+    image_alt: "Screenshot of the Toolbar Component",
+    customization: false,
+    customizations: [],
+    dependencies: ["tailwindcss", "lucide-react", "react"],
+    maintainer: "",
+    maintainerlink: "",
+    links: [],
+    usage: () => {
+      return `import React from "react";
+import {
+  MentionButton,
+  MentionDisplay,
+  MentionEmail,
+  MentionName,
+  MentionProfile,
+  MentionWrapper,
+} from "~/components/ui/mention";
+
+export default function MentionComponent() {
+  return (
+    <MentionWrapper>
+      <MentionButton>@John</MentionButton>
+      <MentionDisplay style="light">
+        <MentionProfile src="https://www.pngkey.com/png/full/503-5035055_a-festival-celebrating-tractors-profile-picture-placeholder-round.png" rounded alt="Profile" />
+        <MentionEmail>johndoe@acmeinc.com</MentionEmail>
+        <MentionName>John Doe</MentionName>
+      </MentionDisplay>
+    </MentionWrapper>
+  );
+}`;
+    },
+    properties: {
+      MentionDisplay: [
+        {
+          propertyName: "style",
+          propertyType: "string",
+          propertyDescription: `"light" | "dark"`,
+        },
+      ],
+      MentionProfile: [
+        {
+          propertyName: "rounded",
+          propertyType: "boolean",
+          propertyDescription: `Wether or not the image should be rounded.`,
+        },
+        {
+          propertyName: "Default Image Props",
+          propertyType: "/",
+          propertyDescription: `The default Image props.`,
         },
       ],
     },

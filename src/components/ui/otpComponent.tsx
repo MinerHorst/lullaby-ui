@@ -9,17 +9,17 @@ import React, {
 interface OTPComponentProps {
   length: number;
   separatorIndex: number;
+  action?: (otp: string) => void;
 }
 
 const OTPComponent: React.FC<OTPComponentProps> = ({
   length = 6,
   separatorIndex = 3,
+  action,
 }) => {
   const [otp, setOTP] = useState<string[]>(Array(length).fill(""));
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const otpInputs = useRef<HTMLInputElement[]>(Array(length).fill(undefined));
-
-  console.log(length);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const value = e.target.value;
@@ -40,10 +40,10 @@ const OTPComponent: React.FC<OTPComponentProps> = ({
   };
 
   useEffect(() => {
-    if (otp.every((digit) => digit !== "")) {
-      console.log("All inputs are filled:", otp.join("")); //You can handle an action once the OTP is filled here.
+    if (otp.every((digit) => digit !== "") && action) {
+      action(otp.join(""));
     }
-  }, [otp]);
+  }, [otp, action]);
 
   return (
     <div>

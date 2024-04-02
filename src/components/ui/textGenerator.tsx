@@ -4,11 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const TextGenerator = ({
   inputText,
   delay,
-  color,
 }: {
   inputText: string;
   delay: number;
-  color: string;
 }) => {
   const wordsArray = inputText.split(" ");
 
@@ -24,7 +22,7 @@ const TextGenerator = ({
               duration: 0.5,
               delay: delay * idx,
             }}
-            style={{ display: "inline-block", color: color }}
+            style={{ display: "inline-block" }}
             className={`pr-1 opacity-0 dark:text-white`}
           >
             {word}

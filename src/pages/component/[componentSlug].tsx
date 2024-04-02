@@ -79,9 +79,9 @@ const ComponentPage: React.FC = () => {
             />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <main className="flex h-full w-screen flex-col items-center overflow-auto bg-gradient-to-b from-[#000] to-[#15162c] md:max-h-screen md:overflow-hidden">
+          <main className="flex h-[100dvh] w-screen flex-col items-center overflow-hidden bg-gradient-to-b from-[#000] to-[#15162c] md:h-[100dvh]">
             <NavbarComponent />
-            <div className="flex h-fit w-full flex-col pb-8 text-white md:grid md:h-full md:grid-cols-12 md:grid-rows-12">
+            <div className="flex h-[90vh] w-full flex-col pb-8 text-white lg:grid lg:h-full lg:grid-cols-12 lg:grid-rows-12">
               <div className="mx-4 flex h-[5vh] overflow-scroll md:hidden">
                 <ul className="flex items-center space-x-2 whitespace-nowrap text-sm text-muted-foreground">
                   {components.map((component) => (
@@ -93,7 +93,7 @@ const ComponentPage: React.FC = () => {
                   ))}
                 </ul>
               </div>
-              <div className="col-start-1 row-span-full row-start-1 hidden space-y-6 overflow-scroll px-4 md:col-span-2 md:inline">
+              <div className="hidden space-y-6 overflow-scroll px-4 lg:col-span-2 lg:col-start-1 lg:row-span-full lg:row-start-1 lg:inline">
                 <div className="space-y-4">
                   <h1>Installation</h1>
                   <ul className="space-y-2 text-sm text-muted-foreground">
@@ -122,9 +122,8 @@ const ComponentPage: React.FC = () => {
                   </ul>
                 </div>
               </div>
-
-              <div className="flex flex-col md:col-span-10 md:col-start-3 md:row-span-full md:row-start-1 md:mr-4 md:overflow-scroll">
-                <div className="h-fit w-full flex-col space-y-4 bg-slate-500/10 p-4 text-white md:h-full md:max-h-[87.7vh] md:overflow-scroll md:rounded-lg">
+              <div className="flex flex-col md:row-start-1 lg:col-span-10 lg:col-start-3 lg:row-span-full lg:mr-4 lg:overflow-scroll lg:pb-10">
+                <div className="h-fit w-full flex-col space-y-4 bg-slate-500/10 p-4 pb-4 text-white lg:h-full lg:overflow-scroll lg:rounded-lg">
                   <div className="flex flex-col justify-between space-y-4">
                     <div className="flex flex-col space-y-4">
                       <h1 className="font-bold leading-none [font-size:_clamp(3.5em,3.5vw,8em)]">
@@ -147,10 +146,10 @@ const ComponentPage: React.FC = () => {
                       )}
                     </div>
 
-                    <div className="flex w-full flex-col gap-4 rounded-md bg-violet-500/10 p-4">
+                    <div className="flex h-fit w-full flex-col gap-4 overflow-hidden rounded-md bg-violet-500/10 p-4">
                       <div
                         key={key}
-                        className="aspect-[1/0.5] h-full w-full rounded-md"
+                        className="aspect-square h-full w-full rounded-md lg:aspect-[1/0.3]"
                       >
                         {component.component({
                           color: "",
@@ -161,79 +160,30 @@ const ComponentPage: React.FC = () => {
                           separatorIndex: 0,
                         })}
                       </div>
-                      <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden md:h-[50vh] ">
-                        <CodeBlockComponent
-                          code={component.sampleCode({
-                            color: "",
-                            text: "",
-                            delay: 0,
-                            Code: "",
-                            length: 0,
-                            separatorIndex: 0,
-                          })}
-                        />
+                      <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden lg:h-[50vh] ">
+                        {
+                          <CodeBlockComponent
+                            code={component.sampleCode({
+                              color: "",
+                              text: "",
+                              delay: 0,
+                              Code: "",
+                              length: 0,
+                              separatorIndex: 0,
+                            })}
+                          />
+                        }
                       </div>
                     </div>
                   </div>
-                  <div className="hidden h-fit grid-cols-3 gap-4 md:grid">
-                    <h1 className="hidden font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)] md:inline">
-                      Installation
-                    </h1>
-                    <div className="col-span-3 hidden aspect-[1/0.5] flex-col space-y-4 rounded-md bg-violet-500/10 py-4 md:flex md:px-4">
-                      <h2>Install dependencies</h2>
-                      <div className="relative flex flex-col items-center justify-center">
-                        <CodeBlockComponent
-                          code={`npm i ${component.dependencies.join(" ")} clsx tailwind-merge`}
-                        />
-                      </div>
-
-                      <div>
-                        <h2>Copy the Source Code</h2>
-                        <h3 className="text-sm text-muted-foreground">
-                          /components/ui/{component.slug.toLowerCase()}.tsx
-                        </h3>
-                      </div>
-
-                      <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
-                        <CodeBlockComponent
-                          code={component.sampleCode({
-                            color: "",
-                            text: "",
-                            delay: 0,
-                            Code: "",
-                            length: 0,
-                            separatorIndex: 0,
-                          })}
-                        />
-                      </div>
-                      <div>
-                        <h2>Usage</h2>
-                        <h3 className="text-sm text-muted-foreground">
-                          /pages/index.tsx
-                        </h3>
-                      </div>
-                      <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
-                        <CodeBlockComponent
-                          code={component.usage({
-                            color: "",
-                            text: "",
-                            delay: 0,
-                            Code: "",
-                            length: 0,
-                            separatorIndex: 0,
-                          })}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)] md:hidden">
+                  <h1 className="font-bold leading-none [font-size:_clamp(2em,2.5vw,8em)]">
                     Installation
                   </h1>
-                  <div className="col-span-3 flex aspect-[1/0.5] flex-col space-y-4 rounded-md bg-violet-500/10 p-4 md:hidden">
+                  <div className="hidden aspect-[1/0.5] h-full w-full flex-col space-y-4 rounded-md bg-violet-500/10 py-4 md:flex md:px-4">
                     <h2>Install dependencies</h2>
                     <div className="relative flex flex-col items-center justify-center">
                       <CodeBlockComponent
-                        code={`npm i ${component.dependencies.join(" ")}`}
+                        code={`npm i ${component.dependencies.join(" ")} clsx tailwind-merge`}
                       />
                     </div>
 
@@ -243,7 +193,8 @@ const ComponentPage: React.FC = () => {
                         /components/ui/{component.slug.toLowerCase()}.tsx
                       </h3>
                     </div>
-                    <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
+
+                    <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden lg:h-[50vh] ">
                       <CodeBlockComponent
                         code={component.sampleCode({
                           color: "",
@@ -261,7 +212,53 @@ const ComponentPage: React.FC = () => {
                         /pages/index.tsx
                       </h3>
                     </div>
-                    <div className="relative flex h-[25vh] max-h-[25vh] flex-col items-center justify-center md:h-[50vh] ">
+                    <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden lg:h-[50vh] ">
+                      <CodeBlockComponent
+                        code={component.usage({
+                          color: "",
+                          text: "",
+                          delay: 0,
+                          Code: "",
+                          length: 0,
+                          separatorIndex: 0,
+                        })}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex aspect-[1/0.5] h-full w-full flex-col space-y-4 rounded-md bg-violet-500/10 px-4 md:hidden">
+                    <h2>Install dependencies</h2>
+                    <div className="relative flex flex-col items-center justify-center">
+                      <CodeBlockComponent
+                        code={`npm i ${component.dependencies.join(" ")}`}
+                      />
+                    </div>
+
+                    <div>
+                      <h2>Copy the Source Code</h2>
+                      <h3 className="text-sm text-muted-foreground">
+                        /components/ui/{component.slug.toLowerCase()}.tsx
+                      </h3>
+                    </div>
+                    <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden lg:h-[50vh] ">
+                      <CodeBlockComponent
+                        code={component.sampleCode({
+                          color: "",
+                          text: "",
+                          delay: 0,
+                          Code: "",
+                          length: 0,
+                          separatorIndex: 0,
+                        })}
+                      />
+                    </div>
+                    <div>
+                      <h2>Usage</h2>
+                      <h3 className="text-sm text-muted-foreground">
+                        /pages/index.tsx
+                      </h3>
+                    </div>
+                    <div className="flex h-[25vh] max-h-[25vh] w-full flex-col items-center justify-start overflow-hidden lg:h-[50vh] ">
                       <CodeBlockComponent
                         code={component.usage({
                           color: "",
