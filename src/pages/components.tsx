@@ -36,7 +36,7 @@ export default function Home() {
               <h1>Installation</h1>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <Link href={"/creating"}>Next.js</Link>
+                  <Link href={"/installation"}>Next.js</Link>
                 </li>
                 <li>
                   <Link href={"/tailwind"}>Tailwind CSS</Link>

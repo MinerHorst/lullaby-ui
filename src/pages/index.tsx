@@ -118,7 +118,7 @@ export default function Home() {
               <path d="M20 12l-8 8l-4 -4"></path>
             </svg>
           </div>
-          <div className="col-span-full flex h-[20vh] w-full flex-col justify-center text-center">
+          <div className="col-span-full flex h-[20vh] w-full flex-col items-center justify-center text-center">
             <motion.h1
               initial={{ opacity: 0, y: -4 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -126,11 +126,13 @@ export default function Home() {
               viewport={{ once: true }}
               className="font-bold [font-size:_clamp(2em,3.5vw,8em)]"
             >
-              Streamline your development process.
+              Copy and paste is the new Development.
             </motion.h1>
             <p className="text-neutral-400">
-              With copy and paste components that suit all your needs.
+              Build fast launch faster with copy and paste components that suit
+              all your needs.
             </p>
+            <p className="text-neutral-400">Easy, Reliable, Open Source</p>
           </div>
           <div className="col-span-full flex h-[15vh] items-center justify-center gap-4">
             <Link href={"/components"}>
