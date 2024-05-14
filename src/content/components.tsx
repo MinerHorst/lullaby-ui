@@ -11,12 +11,12 @@ import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
 import TextArea from "~/components/ui/textarea";
 import DrawerComponent from "~/components/ui/drawer";
-import TypeWriter from "~/components/ui/typeWriter";
 import ToolbarComponent from "~/components/ui/toolbarComponent";
 import MentionComponent from "~/components/ui/mentionComponent";
 import SignUpComponent from "~/components/ui/signupComponent";
 import DialogueComponent from "~/components/ui/dialogue/dialogueComponent";
 import SideBarComponent from "~/components/ui/sideBarComponent";
+import TypeWriter from "~/components/ui/typeWriter";
 
 export interface ComponentLink {
   name: string;
