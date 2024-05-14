@@ -11,7 +11,6 @@ import TextGenerator from "~/components/ui/textGenerator";
 import TextPulse from "~/components/ui/textPulse";
 import TextArea from "~/components/ui/textarea";
 import DrawerComponent from "~/components/ui/drawer";
-import Rating from "~/components/ui/rating";
 import TypeWriter from "~/components/ui/typeWriter";
 import ToolbarComponent from "~/components/ui/toolbarComponent";
 import MentionComponent from "~/components/ui/mentionComponent";

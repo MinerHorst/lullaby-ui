@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const TypeWriter = ({
+export default function TypeWriter({
   text,
   delay = 0.2,
   color,
@@ -9,7 +9,7 @@ const TypeWriter = ({
   text: string;
   delay: number;
   color: string;
-}) => {
+}) {
   const characters = [...text];
 
   return (
@@ -33,6 +33,4 @@ const TypeWriter = ({
       </AnimatePresence>
     </div>
   );
-};
-
-export default TypeWriter;
+}
