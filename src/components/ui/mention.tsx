@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, animate, motion, spring } from "framer-motion";
 import React, { useState } from "react";
 
 export function MentionButton({ children }: { children: React.ReactNode }) {
@@ -15,13 +15,18 @@ export function MentionDisplay({
   style?: "light" | "dark";
 }) {
   return (
-    <div
-      className={` z-10 flex h-fit min-w-[270px] items-center justify-between gap-4 rounded-xl border border-neutral-400 px-4 py-2 text-start ${
-        style === "light" ? "bg-white text-black" : "bg-black text-white"
-      }`}
-    >
-      {children}
-    </div>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, rotate: [-1, -3, 5, 3, 1, 0] }}
+        transition={{ duration: 0.6 }}
+        className={` z-10 flex h-fit min-w-[270px] items-center justify-between gap-4 rounded-xl border border-neutral-400 px-4 py-2 text-start ${
+          style === "light" ? "bg-white text-black" : "bg-black text-white"
+        }`}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

@@ -62,7 +62,7 @@ export default function Home() {
           </div>
 
           <div className="col-span-full row-span-full row-start-2 mb-8 grid grid-cols-1 gap-4 overflow-scroll px-4 pb-4 md:col-span-10 md:col-start-3 md:row-start-1 md:grid-cols-3 md:pr-4">
-            <div className="col-span-full flex flex-col">
+            <div className="col-span-3 flex flex-col">
               <button className="relative z-[100] inline-flex min-h-8 w-fit overflow-hidden rounded-full p-[1px]">
                 <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#333_0%,#333_50%,#fff_100%)]" />
                 <span className="z-[20] inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white">

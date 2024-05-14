@@ -32,6 +32,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <Analytics />
           <SpeedInsights />
           <motion.div id="drawer-root"></motion.div>
+          <motion.div id="dialogue-root"></motion.div>
         </AnimatePresence>
       </main>
     </SessionProvider>

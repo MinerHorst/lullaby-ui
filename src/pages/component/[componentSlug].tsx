@@ -93,7 +93,7 @@ const ComponentPage: React.FC = () => {
                   ))}
                 </ul>
               </div>
-              <div className="hidden space-y-6 overflow-scroll px-4 lg:col-span-2 lg:col-start-1 lg:row-span-full lg:row-start-1 lg:inline">
+              <div className="hidden space-y-6 overflow-x-scroll px-4 lg:col-span-2 lg:col-start-1 lg:row-span-full lg:row-start-1 lg:inline">
                 <div className="space-y-4">
                   <h1>Installation</h1>
                   <ul className="space-y-2 text-sm text-muted-foreground">
@@ -122,7 +122,7 @@ const ComponentPage: React.FC = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex flex-col md:row-start-1 lg:col-span-10 lg:col-start-3 lg:row-span-full lg:mr-4 lg:overflow-scroll lg:pb-10">
+              <div className="flex flex-col overflow-scroll md:row-start-1 lg:col-span-10 lg:col-start-3 lg:row-span-full lg:mr-4 lg:pb-10">
                 <div className="h-fit w-full flex-col space-y-4 bg-slate-500/10 p-4 pb-4 text-white lg:h-full lg:overflow-scroll lg:rounded-lg">
                   <div className="flex flex-col justify-between space-y-4">
                     <div className="flex flex-col space-y-4">
