@@ -135,13 +135,6 @@ export default function NavbarComponent() {
             className="rounded-md border border-muted-foreground"
           ></Image>
         </Link>
-        <div className="text-neutral-400">
-          <ul className="flex gap-4">
-            <Link href={"/pricing"}>
-              <li>Pricing</li>
-            </Link>
-          </ul>
-        </div>
         <div className="flex items-center gap-4">
           <button
             className="flex h-9 w-full items-center gap-4 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
@@ -181,9 +174,6 @@ export default function NavbarComponent() {
           <ul className="flex gap-4">
             <Link href={`/components`}>
               <li>Components</li>
-            </Link>
-            <Link href={"/pricing"}>
-              <li>Pricing</li>
             </Link>
 
             <li className="cursor-not-allowed">Resources</li>
