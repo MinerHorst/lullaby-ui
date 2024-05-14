@@ -16,7 +16,6 @@ import MentionComponent from "~/components/ui/mentionComponent";
 import SignUpComponent from "~/components/ui/signupComponent";
 import DialogueComponent from "~/components/ui/dialogue/dialogueComponent";
 import SideBarComponent from "~/components/ui/sideBarComponent";
-import TypeWriter from "~/components/ui/typeWriter";
 
 export interface ComponentLink {
   name: string;
@@ -241,93 +240,6 @@ const openDrawer = () => {
           propertyName: "content",
           propertyType: "React.ReactNode",
           propertyDescription: `The content of the Drawer.`,
-        },
-      ],
-    },
-  },
-  {
-    id: 2,
-    name: "Typewriter",
-    slug: "typewriter",
-    description: "A text input component.",
-    sampleCode: (props: { color: string; text: string }) => {
-      return `import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-const Typewriter = ({
-  text,
-  delay = 0.2,
-}: {
-  text: string;
-  delay: number;
-}) => {
-  const characters = [...text];
-
-  return (
-    <div>
-      <AnimatePresence>
-        {characters.map((letter, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ delay: delay * index }}
-            className="inline-block"
-          >
-            {letter}
-          </motion.span>
-        ))}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-export default Typewriter;`;
-    },
-    component: (props: { color: string }) => (
-      <>
-        <div className="relative flex h-full items-center justify-center rounded-md bg-[rgb(17,18,26)] p-4 text-center">
-          <TypeWriter
-            text="Hello, I'm a Typewriter!"
-            delay={0.2}
-            color={props.color}
-          ></TypeWriter>
-        </div>
-      </>
-    ),
-    image: "https://live.staticflickr.com/65535/53623675134_f3a930133a_c.jpg",
-    image_alt: "Input Image",
-    customization: true,
-    customizations: [],
-    dependencies: ["tailwindcss", "framer-motion"],
-    links: [],
-    usage: (props: { color: string; text: string }) => {
-      return ``;
-    },
-    properties: {
-      Appearance: [
-        {
-          propertyName: "",
-          propertyType: "",
-          propertyDescription: "",
-        },
-        {
-          propertyName: "",
-          propertyType: "",
-          propertyDescription: "",
-        },
-      ],
-      Behavior: [
-        {
-          propertyName: "",
-          propertyType: "",
-          propertyDescription: "",
-        },
-        {
-          propertyName: "",
-          propertyType: "",
-          propertyDescription: "",
         },
       ],
     },
